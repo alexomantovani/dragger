@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 //Import GenericProduct class
-
+import 'package:dragger/ui/components/generic_product.dart';
 //Create enum to differentiate products by category and use them as key to the maps in DbWherehouse
 
 enum Category {
@@ -243,14 +243,38 @@ class DbWherehouse extends ChangeNotifier {
       ],
     },
   };
+
+  //After the creation and definition of the GenericProduct class
+  //Create a method that will generate a DraggableProduct on site by receiving a String category.
+  //This method will parse all the data needed in the productDatabase map, to send the right
+  //product to the right SectionScreen, adding notifyListeners().
+  //This method will be called getProducts(String category).
+  GenericProduct genericProduct = GenericProduct(
+    productId: '',
+    productImageUrl: '',
+    productPrice: 0.0,
+    productInventoryCount: 0,
+    productWidget: const SizedBox(),
+  );
+
+  void getProducts(Category category, int index) {
+    String imageUrl = productDatabase[category]![index]!.first;
+    String iD = productDatabase[category]![index]![1];
+    double price = productDatabase[category]![index]![2];
+    int inventoryCount = productDatabase[category]![index]!.last;
+
+    genericProduct = GenericProduct(
+      productId: iD,
+      productImageUrl: imageUrl,
+      productPrice: price,
+      productInventoryCount: inventoryCount,
+      productWidget: Image.asset(imageUrl),
+    );
+    notifyListeners();
+  }
 }
 
-//After the creation and definition of the DraggableProduct class
-//Create a method that will generate a DraggableProduct on site by receiving a String category.
-//This method will parse all the data needed in the productDatabase map, to send the right
-//product to the right SectionScreen, adding notifyListeners(). This will be an asyncronous method
-//because we have to wait to get the imageUrls before they will be displayed in the SectionScreen
-//This method will be called getProducts(String category).
+
 
 //Create a private list that will receive the data from the Draggable widget dragged by the user.
 //this list will be called _cartProducts.
