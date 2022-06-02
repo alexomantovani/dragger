@@ -14,6 +14,24 @@ class DirectorySectionScreen extends StatelessWidget {
 
     //Each square will be in a GestureDetector to trigger an onTap function and navigate to the respective aisle product section
 
-    return const Scaffold();
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+            // image: DecorationImage(
+            //   image: AssetImage(''),
+            // ),
+            ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            final height = constraints.maxHeight;
+
+            return Stack(
+              children: const [],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
