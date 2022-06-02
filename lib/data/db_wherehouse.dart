@@ -1,4 +1,5 @@
 //Import dart Collection package
+import 'dart:collection';
 //Import Material package if needed.
 import 'package:flutter/material.dart';
 
@@ -272,19 +273,29 @@ class DbWherehouse extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  //Create a private list that will receive the data from the Draggable widget dragged by the user.
+  //this list will be called _cartProducts.
+  final List<GenericProduct> _cartProducts = [];
+
+  //Create an unmodifiableListView that will get the private list above and send it to the cart where
+  //it`ll be displayed after the user draggs it. This unmodifiableListView will be called cartProducts.
+  UnmodifiableListView<GenericProduct> get cartProdcuts {
+    return UnmodifiableListView(_cartProducts);
+  }
+
+  //Create a function that will receive the data from the DraggableProduct and save it in the private list
+  //Also this function will trigger another function that calculates the users cartPartials.
+  //this function will be called saveCartProducts(GenericProduct genericProduct).
+  void saveCartProducts(GenericProduct genericProduct) {
+    _cartProducts.add(genericProduct);
+    notifyListeners();
+  }
 }
 
 
 
-//Create a private list that will receive the data from the Draggable widget dragged by the user.
-//this list will be called _cartProducts.
 
-//Create an unmodifiableListView that will get the private list above and send it to the cart where
-//it`ll be displayed after the user draggs it. This unmodifiableListView will be called cartProducts.
-
-//Create a function that will receive the data from the DraggableProduct and save it in the private list
-//Also this function will trigger another function that calculates the users cartPartials.
-//this function will be called saveCartProducts(GenericProduct genericProduct).
 
 //Create a variable double that will receive the order final total. This variavle will be called total.
 
