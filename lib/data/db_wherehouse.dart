@@ -17,16 +17,233 @@ enum Category {
   graosEmassas,
 }
 
-class DbWherehouse extends ChangeNotifier {}
-
 //Create class DbWherehouse and extend it to the ChangeNotifier for the use of the Provider package
-
-//Inside DbWherehouse create a map that will receive all the data to display and manipulate the products by the user
-//This map will be a Map<String, Map<String, List<dynamic>>> called productDatabase
-//The key to the broader map will be the product categories enums created before the class, the inside map keys will be
-//the imageUrls of the products hardcoded from downloaded assets in the assets/images folder. To finish the variable
-//typing, the values of this map will be a dynamic list composed of a String productId as the first element, a double
-//productPrice as the second element and an int productInventoryCount as the last element of the list.
+class DbWherehouse extends ChangeNotifier {
+  //Inside DbWherehouse create a map that will receive all the data to display and manipulate the products by the user
+  //This map will be a Map<String, Map<String, List<dynamic>>> called productDatabase
+  //The key to the broader map will be the product categories enums created before the class, the inside map keys will be
+  //the imageUrls of the products hardcoded from downloaded assets in the assets/images folder. To finish the variable
+  //typing, the values of this map will be a dynamic list composed of a String productId as the first element, a double
+  //productPrice as the second element and an int productInventoryCount as the last element of the list.
+  final Map<Category, Map<String, List<dynamic>>> productDatabase = {
+    Category.bebidas: {
+      'lib/assets/images/supermarket_longneck.png': [
+        'Eisenbahn Longneck',
+        4.59,
+        60
+      ],
+      'lib/assets/images/supermarket_12_pack.png': [
+        'Brahma Duplo Malte',
+        3.19,
+        36
+      ],
+      'lib/assets/images/supermarket_cocacola.png': [
+        'Coca Cola 2l',
+        8.49,
+        10,
+      ],
+      'lib/assets/images/supermarket_monster.png': [
+        'Monster Mango Loco',
+        7.49,
+        8,
+      ],
+      'lib/assets/images/supermarket_agua_mineral.png': [
+        'Água Mineral 1,5l',
+        3.79,
+        50,
+      ],
+    },
+    Category.carnes: {
+      'lib/assets/images/supermarket_frango.png': [
+        'Frango Inteiro Congelado 3kg',
+        34.50,
+        12,
+      ],
+      'lib/assets/images/supermarket_peito_de_frango.png': [
+        'Peito de frango sem osso 1kg',
+        23.80,
+        22,
+      ],
+      'lib/assets/images/supermarket_contra_file.png': [
+        'Contra Filé 1kg',
+        54.50,
+        25,
+      ],
+      'lib/assets/images/supermarket_picanha_bovina.png': [
+        'Picanha Bovina Argentina 1kg',
+        96.97,
+        6,
+      ],
+      'lib/assets/images/supermarket_picanha_suina.png': [
+        'Picanha Suína 1kg',
+        29.97,
+        20,
+      ],
+    },
+    Category.graosEmassas: {
+      'lib/assets/images/supermarket_arroz_tipo1.png': [
+        'Arroz Tipo 1 5kg',
+        19.90,
+        30,
+      ],
+      'lib/assets/images/supermarket_arroz_integral.png': [
+        'Arroz integral 1kg',
+        7.48,
+        10,
+      ],
+      'lib/assets/images/supermarket_macarrao_espaguete.png': [
+        'Macarrão Espagute 500g',
+        3.98,
+        35,
+      ],
+      'lib/assets/images/supermarket_macarrao_talharim.png': [
+        'Macarrão Talharim 500g',
+        8.95,
+        16,
+      ],
+      'lib/assets/images/supermarket_macarrao_instantaneo.png': [
+        'Macarrão Instantâneo 70g',
+        5.28,
+        45,
+      ],
+    },
+    Category.higiene: {
+      'lib/assets/images/supermarket_desodorante.png': [
+        'Desodorante Spray 150ml',
+        17.90,
+        10,
+      ],
+      'lib/assets/images/supermarket_shampoo.png': [
+        'Shampoo 200ml',
+        19.48,
+        18,
+      ],
+      'lib/assets/images/supermarket_escova_de_dentes.png': [
+        'Escova de dentes 3un',
+        9.90,
+        15,
+      ],
+      'lib/assets/images/supermarket_creme_dental.png': [
+        'Creme Dental 90g',
+        3.98,
+        26,
+      ],
+      'lib/assets/images/supermarket_papel_higienico.png': [
+        'Papel Higiênico 30m',
+        32.90,
+        40,
+      ],
+    },
+    Category.hortifruti: {
+      'lib/assets/images/supermarket_ovos.png': [
+        'Ovos Braco Extra 10un',
+        9.80,
+        20,
+      ],
+      'lib/assets/images/supermarket_cebola.png': [
+        'Cebola Branca 1kg',
+        5.98,
+        50,
+      ],
+      'lib/assets/images/supermarket_tomate.png': [
+        'Tomate 1kg',
+        12.80,
+        50,
+      ],
+      'lib/assets/images/supermarket_laranja.png': [
+        'Laranja Bahia 1kg',
+        7.98,
+        50,
+      ],
+      'lib/assets/images/supermarket_abobora.png': [
+        'Abóbora Moranga 3kg',
+        14.94,
+        6,
+      ],
+    },
+    Category.laticinios: {
+      'lib/assets/images/supermarket_leite.png': [
+        'Leite Integral 1l',
+        5.28,
+        50,
+      ],
+      'lib/assets/images/supermarket_yogurt.png': [
+        'Iogurte Integral 170g',
+        1.99,
+        20,
+      ],
+      'lib/assets/images/supermarket_queijo_prato.png': [
+        'Queijo Prato 150g',
+        7.95,
+        25,
+      ],
+      'lib/assets/images/supermarket_queijo_mussarela.png': [
+        'Queijo Mussareka 150g',
+        7.78,
+        35,
+      ],
+      'lib/assets/images/supermarket_cream_cheese.png': [
+        'Cream Cheese 300g',
+        13.98,
+        16,
+      ],
+    },
+    Category.limpeza: {
+      'lib/assets/images/supermarket_detergente.png': [
+        'Detergente 500ml',
+        2.70,
+        40,
+      ],
+      'lib/assets/images/supermarket_escova.png': [
+        'Escova Limpeza',
+        4.80,
+        4,
+      ],
+      'lib/assets/images/supermarket_balde.png': [
+        'Balde Plástico 8l',
+        22.90,
+        11,
+      ],
+      'lib/assets/images/supermarket_vassoura.png': [
+        'Vassoura Multiuso',
+        16.98,
+        8,
+      ],
+      'lib/assets/images/supermarket_desinfetante.png': [
+        'Desinfetante 500ml',
+        11.90,
+        16,
+      ],
+    },
+    Category.padaria: {
+      'lib/assets/images/supermarket_pao_frances.png': [
+        'Pão Francês 165g',
+        2.13,
+        200,
+      ],
+      'lib/assets/images/supermarket_pao_de_forma.png': [
+        'Pão de Forma 400g',
+        5.68,
+        10,
+      ],
+      'lib/assets/images/supermarket_pao_italiano.png': [
+        'Pão Italiano 1kg',
+        22.80,
+        7,
+      ],
+      'lib/assets/images/supermarket_donut.png': [
+        'Donut Chocolate 250g',
+        4.98,
+        30,
+      ],
+      'lib/assets/images/supermarket_croissant.png': [
+        'Croissant Frango 400g',
+        8.94,
+        16,
+      ],
+    },
+  };
+}
 
 //After the creation and definition of the DraggableProduct class
 //Create a method that will generate a DraggableProduct on site by receiving a String category.
