@@ -363,14 +363,21 @@ class DbWherehouse extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //Create a variable bool isPaying that will get its state changed after the user presses the Make the order button
+  //from false to true and then to false again, signaling that the payment process is over. This variable will be called isPaying.
+  bool isPaying = false;
+
+  //Create a function that will be triggered after the user presses the Make the order button and will change the isPaying state
+  //to true, then it`ll wait for 2 seconds to then change isPaying to false again.
+  //This function will asyncronous and will be called getPayment().
+  void getPayment() async {
+    isPaying = !isPaying;
+    await Future.delayed(const Duration(seconds: 2));
+    isPaying = !isPaying;
+    notifyListeners();
+  }
 }
-
-//Create a variable bool isPaying that will get its state changed after the user presses the Make the order button
-//from false to true and then to false again, signaling that the payment process is over. This variable will be called isPaying.
-
-//Create a function that will be triggered after the user presses the Make the order button and will change the isPaying state
-//to true, then it`ll wait for 2 seconds to then change isPaying to false again.
-//This function will asyncronous and will be called getPayment().
 
 //Create function that will restart the application state by deleting all elements from
 //_cartProducts,_orderImageUrls,_orderValueSummary,subTotal = 0.0, total = 0.0;
