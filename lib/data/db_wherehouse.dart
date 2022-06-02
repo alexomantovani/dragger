@@ -291,6 +291,51 @@ class DbWherehouse extends ChangeNotifier {
     _cartProducts.add(genericProduct);
     notifyListeners();
   }
+
+  //Create a private list that will receive the Texts widgets from the getOrderPartial().
+  //this list will be called _orderValueSummary.
+  final List<Text> _orderValueSummary = [];
+
+  //Create an unmodifiableListView that will get the private list above and send it to the order preview modalBottomSheet where
+  //it`ll be displayed after the user presses a button. This unmodifiableListView will be called orderValueSummary.
+  UnmodifiableListView<Text> get orderValueSummary {
+    return UnmodifiableListView(_orderValueSummary);
+  }
+
+  //Create a private list that will receive the String imageUrls from the getOrderPartial().
+  //this list will be called _orderImageUrls.
+  final List<String> _orderImageUrls = [];
+
+  //Create an unmodifiableListView that will get the private list above and send it to the order preview modalBottomSheet where
+  //it`ll be displayed after the user presses a button. This unmodifiableListView will be called orderImageUrls.
+  UnmodifiableListView<String> get orderImageUrls {
+    return UnmodifiableListView(_orderImageUrls);
+  }
+
+  //Create a variable double that will receive the order partial subtotal. This variable will be called subTotal.
+  double subTotal = 0.0;
+
+  //Create a function that will receive the data from the DraggableProduct and the selected quantity as an integer,
+  //and will calculate the order partial without the delivery fee and minimum order fee and save it to the subTotal.
+  //using the data it`ll parse the productId, selected quantity and total price to String in a Text widget.
+  //this Text widget will be saved in _orderValueSummary.
+  //this function will be called getOrderPartial(GenericProduct genericProduct, int selectedQuantity).
+  void getOrderPartial(GenericProduct genericProduct, int selectedQuantity) {
+    String orderSummary = '';
+
+    _orderImageUrls.add(genericProduct.productImageUrl);
+
+    subTotal == 0.0
+        ? subTotal = genericProduct.productPrice * selectedQuantity
+        : subTotal += genericProduct.productPrice * selectedQuantity;
+
+    orderSummary = genericProduct.productId.contains('_')
+        ? '$selectedQuantity x ${genericProduct.productId.replaceFirst('_', ' ')}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2)}'
+        : '$selectedQuantity x ${genericProduct.productId}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2)}';
+    _orderValueSummary.add(Text(orderSummary));
+
+    notifyListeners();
+  }
 }
 
 
@@ -304,26 +349,6 @@ class DbWherehouse extends ChangeNotifier {
 //Create a variable double that will receive the order delivery fee. This variavle will be called deliveryFee.
 
 //Create a variable String that will receive the orderDayTimeStamp. This variable will be called orderDayTimeStamp.
-
-//Create a private list that will receive the Texts widgets from the getOrderPartial().
-//this list will be called _orderValueSummary.
-
-//Create an unmodifiableListView that will get the private list above and send it to the order preview modalBottomSheet where
-//it`ll be displayed after the user presses a button. This unmodifiableListView will be called orderValueSummary.
-
-//Create a private list that will receive the String imageUrls from the getOrderPartial().
-//this list will be called _orderImageUrls.
-
-//Create an unmodifiableListView that will get the private list above and send it to the order preview modalBottomSheet where
-//it`ll be displayed after the user presses a button. This unmodifiableListView will be called orderImageUrls.
-
-//Create a variable double that will receive the order partial subtotal. This variable will be called subTotal.
-
-//Create a function that will receive the data from the DraggableProduct and the selected quantity as an integer,
-  //and will calculate the order partial without the delivery fee and minimum order fee and save it to the subTotal.
-  //using the data it`ll parse the productId, selected quantity and total price to String in a Text widget.
-  //this Text widget will be saved in _orderValueSummary.
-  //this function will be called getOrderPartial(GenericProduct genericProduct, int selectedQuantity).
 
 //Create a function that get the order partial and checks if the minumum ammount was matched or not, and then
 //adds the delivery fee and if applicable adds the minimum order fee and save it to the total variable. Then this function will get the
