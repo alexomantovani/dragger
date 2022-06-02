@@ -336,24 +336,34 @@ class DbWherehouse extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  //Create a variable double that will receive the order final total. This variavle will be called total.
+  double total = 0.0;
+
+  //Create a variable double that will receive the order minimum fee. This variavle will be called serviceFee.
+  double serviceFee = 2.99;
+
+  //Create a variable double that will receive the order delivery fee. This variavle will be called deliveryFee.
+  double deliveryFee = 11.99;
+
+  //Create a variable String that will receive the orderDayTimeStamp. This variable will be called orderDayTimeStamp.
+  late String orderDayTimeStamp;
+
+  //Create a function that get the order partial and checks if the minumum ammount was matched or not, and then
+  //adds the delivery fee and if applicable adds the minimum order fee and save it to the total variable. Then this function will get the
+  //hour that the user pressed the Make the order button and will parse it into Hour:Minute:Seconds, saving it in the orderDayTimeStamp variable.
+  //this function will be called getOrderTotal()
+  void getOrderTotal() {
+    if (subTotal <= 219.99) {
+      total = subTotal + serviceFee + deliveryFee;
+      orderDayTimeStamp = DateTime.now().toLocal().toString();
+    } else {
+      total = subTotal + deliveryFee;
+      orderDayTimeStamp = DateTime.now().toLocal().toString();
+    }
+    notifyListeners();
+  }
 }
-
-
-
-
-
-//Create a variable double that will receive the order final total. This variavle will be called total.
-
-//Create a variable double that will receive the order minimum fee. This variavle will be called serviceFee.
-
-//Create a variable double that will receive the order delivery fee. This variavle will be called deliveryFee.
-
-//Create a variable String that will receive the orderDayTimeStamp. This variable will be called orderDayTimeStamp.
-
-//Create a function that get the order partial and checks if the minumum ammount was matched or not, and then
-//adds the delivery fee and if applicable adds the minimum order fee and save it to the total variable. Then this function will get the
-//hour that the user pressed the Make the order button and will parse it into Hour:Minute:Seconds, saving it in the orderDayTimeStamp variable.
-//this function will be called getOrderTotal()
 
 //Create a variable bool isPaying that will get its state changed after the user presses the Make the order button
 //from false to true and then to false again, signaling that the payment process is over. This variable will be called isPaying.
