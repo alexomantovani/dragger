@@ -377,8 +377,15 @@ class DbWherehouse extends ChangeNotifier {
     isPaying = !isPaying;
     notifyListeners();
   }
-}
 
-//Create function that will restart the application state by deleting all elements from
-//_cartProducts,_orderImageUrls,_orderValueSummary,subTotal = 0.0, total = 0.0;
-//and then it`ll navigate to the initial screen. This function will be called getInitialState().
+  //Create function that will restart the application state by deleting all elements from
+  //_cartProducts,_orderImageUrls,_orderValueSummary,subTotal = 0.0, total = 0.0;
+  //and then it`ll navigate to the initial screen. This function will be called getInitialState().
+  void getInitialState() {
+    _cartProducts.clear();
+    _orderImageUrls.clear();
+    _orderValueSummary.clear();
+    subTotal = 0.0;
+    total = 0.0;
+  }
+}
