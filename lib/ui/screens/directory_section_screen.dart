@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:dragger/data/db_wherehouse.dart';
+
 class DirectorySectionScreen extends StatelessWidget {
   const DirectorySectionScreen({Key? key}) : super(key: key);
 
@@ -27,7 +29,209 @@ class DirectorySectionScreen extends StatelessWidget {
             final height = constraints.maxHeight;
 
             return Stack(
-              children: const [],
+              children: [
+                Transform.translate(
+                  offset: Offset(width / 2, 0.0),
+                  child: Container(
+                    width: width * 0.007,
+                    height: height * 0.805,
+                    color: Colors.black,
+                  ),
+                ),
+                Transform.translate(
+                  offset: Offset(width / 2.65, height / 6.7),
+                  child: SizedBox(
+                    height: height * 0.75,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: width / 4,
+                          height: height * 0.003,
+                          color: Colors.black,
+                        ),
+                        Container(
+                          width: width / 4,
+                          height: height * 0.003,
+                          color: Colors.black,
+                        ),
+                        Container(
+                          width: width / 4,
+                          height: height * 0.003,
+                          color: Colors.black,
+                        ),
+                        Container(
+                          width: width / 4,
+                          height: height * 0.003,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Transform.translate(
+                  offset: Offset(width / 19, height / 6.7),
+                  child: SizedBox(
+                    height: height * 0.75,
+                    width: width * 0.9,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.bebidas.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.carnes.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.graosEmassas.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.higiene.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.hortifruti.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.laticinios.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.limpeza.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.25,
+                              height: height * 0.12,
+                              color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Text(
+                                Category.padaria.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             );
           },
         ),
