@@ -29,7 +29,10 @@ class AisleSectionScreen extends StatelessWidget {
                         height: 75.0,
                         child: DraggableProduct(
                           genericProduct: dB.genericProduct,
-                          feedback: dB.genericProduct.productWidget,
+                          feedback: SizedBox(
+                              width: 150.0,
+                              height: 200.0,
+                              child: dB.genericProduct.productWidget),
                           childWhenDragging: ShaderMask(
                             child: dB.genericProduct.productWidget,
                             shaderCallback: (Rect bounds) {
