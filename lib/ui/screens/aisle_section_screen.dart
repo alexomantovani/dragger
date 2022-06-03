@@ -8,6 +8,8 @@ class AisleSectionScreen extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
+          final double width = constraints.maxWidth;
+          final double height = constraints.maxWidth;
           return Column();
         },
       ),
