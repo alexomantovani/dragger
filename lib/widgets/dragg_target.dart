@@ -28,6 +28,7 @@ class _DraggTargetState extends State<DraggTarget> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     //Inside the build method return a DragTarget widget of DragTarget<GenericProduct>().
     return DragTarget<GenericProduct>(
       builder: (context, candidateData, rejectedData) {
@@ -43,7 +44,16 @@ class _DraggTargetState extends State<DraggTarget> {
           //And then call the showDialog<void>() method for Android and showCupertinoDialog<void>() for iOS that will
           //be in its respective files.
           return Stack(
-            children: const [],
+            children: [
+              SizedBox(
+                width: size.width * 0.22,
+                height: size.height * 0.12,
+                child: Stack(
+                  children: dB.cartProdcuts,
+                ),
+              ),
+              Image.asset('lib/assets/images/supermarket_cart.png'),
+            ],
           );
         }
       },
