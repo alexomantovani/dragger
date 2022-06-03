@@ -62,7 +62,11 @@ flutter:
   assets:
     - lib/assets/images/scene/supermarket_cart.png
     - lib/assets/images/scene/supermarket_corridor.jpg
+    - lib/assets/images/products/supermarket_agua_mineral.png
     - lib/assets/images/products/supermarket_cocacola.png
+    - lib/assets/images/products/supermarket_longneck.png
+    - lib/assets/images/products/supermarket_monster.png
+    - lib/assets/images/products/supermarket_12_pack.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
