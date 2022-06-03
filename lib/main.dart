@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => DbWherehouse(),
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: DirectorySectionScreen(),
       ),
     );
