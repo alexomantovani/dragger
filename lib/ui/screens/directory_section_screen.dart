@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:dragger/data/db_wherehouse.dart';
+import '/data/db_wherehouse.dart';
+import '/ui/screens/aisle_section_screen.dart';
 
 class DirectorySectionScreen extends StatelessWidget {
   const DirectorySectionScreen({Key? key}) : super(key: key);
@@ -87,15 +88,28 @@ class DirectorySectionScreen extends StatelessWidget {
                               height: height * 0.12,
                               color: Colors.blue,
                               alignment: Alignment.center,
-                              child: Text(
-                                Category.bebidas.name.characters
-                                    .toUpperCase()
-                                    .toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AisleSectionScreen(),
+                                      settings: RouteSettings(
+                                        arguments: Category.bebidas.name,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  Category.bebidas.name.characters
+                                      .toUpperCase()
+                                      .toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ),
                             Container(
