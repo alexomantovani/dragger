@@ -259,10 +259,11 @@ class DbWherehouse extends ChangeNotifier {
   );
 
   void getProducts(Category category, int index) {
-    String imageUrl = productDatabase[category]![index]!.first;
-    String iD = productDatabase[category]![index]![1];
-    double price = productDatabase[category]![index]![2];
-    int inventoryCount = productDatabase[category]![index]!.last;
+    String imageUrl = productDatabase[category]!.keys.elementAt(index);
+    String iD = productDatabase[category]!.values.elementAt(index).first;
+    double price = productDatabase[category]!.values.elementAt(index)[1];
+    int inventoryCount =
+        productDatabase[category]!.values.elementAt(index).last;
 
     genericProduct = GenericProduct(
       productId: iD,
@@ -271,7 +272,6 @@ class DbWherehouse extends ChangeNotifier {
       productInventoryCount: inventoryCount,
       productWidget: Image.asset(imageUrl),
     );
-    notifyListeners();
   }
 
   //Create a private list that will receive the data from the Draggable widget dragged by the user.
