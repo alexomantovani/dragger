@@ -28,15 +28,15 @@ class DbWherehouse extends ChangeNotifier {
   //productPrice as the second element and an int productInventoryCount as the last element of the list.
   final Map<Category, Map<String, List<dynamic>>> productDatabase = {
     Category.bebidas: {
-      'lib/assets/images/products/supermarket_longneck.png': [
-        'Eisenbahn Longneck',
-        4.59,
-        60
-      ],
       'lib/assets/images/products/supermarket_12_pack.png': [
         'Brahma Duplo Malte',
         3.19,
         36
+      ],
+      'lib/assets/images/products/supermarket_longneck.png': [
+        'Eisenbahn Longneck',
+        4.59,
+        60
       ],
       'lib/assets/images/products/supermarket_cocacola.png': [
         'Coca Cola 2l',
