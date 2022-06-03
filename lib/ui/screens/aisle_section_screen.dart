@@ -1,8 +1,9 @@
-import 'package:dragger/widgets/draggable_product.dart';
+import 'package:dragger/widgets/dragg_target.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/data/db_wherehouse.dart';
+import '/widgets/draggable_product.dart';
 
 class AisleSectionScreen extends StatelessWidget {
   const AisleSectionScreen({Key? key}) : super(key: key);
@@ -20,30 +21,38 @@ class AisleSectionScreen extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    dB.getProducts(Category.bebidas, index);
-                    return SizedBox(
-                      width: 50.0,
-                      height: 50.0,
-                      child: DraggableProduct(
-                        genericProduct: dB.genericProduct,
-                        feedback: dB.genericProduct.productWidget,
-                        childWhenDragging: ShaderMask(
+                    dB.getProducts(arguments, index);
+                    List<Widget> draggables = List<Widget>.generate(
+                      5,
+                      (index) => SizedBox(
+                        width: 75.0,
+                        height: 75.0,
+                        child: DraggableProduct(
+                          genericProduct: dB.genericProduct,
+                          feedback: dB.genericProduct.productWidget,
+                          childWhenDragging: ShaderMask(
+                            child: dB.genericProduct.productWidget,
+                            shaderCallback: (Rect bounds) {
+                              return LinearGradient(
+                                colors: [
+                                  Colors.grey.shade900,
+                                  Colors.black,
+                                ],
+                              ).createShader(bounds);
+                            },
+                          ),
                           child: dB.genericProduct.productWidget,
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(
-                              colors: [
-                                Colors.grey.shade900,
-                                Colors.black,
-                              ],
-                            ).createShader(bounds);
-                          },
                         ),
-                        child: dB.genericProduct.productWidget,
                       ),
+                    );
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: draggables,
                     );
                   },
                 ),
               ),
+              const DraggTarget()
             ],
           );
         },
