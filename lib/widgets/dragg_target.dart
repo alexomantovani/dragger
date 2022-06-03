@@ -36,7 +36,7 @@ class _DraggTargetState extends State<DraggTarget> {
         //with the supermarket_cart on top and the dB.cartProducts above.
         if (dB.cartProdcuts.isEmpty) {
           return SizedBox(
-            child: Image.asset(''),
+            child: Image.asset('lib/assets/images/supermarket_cart.png'),
           );
         } else {
           //In its onAccept: (data){} function property call the setState method with the dB.getCartProducts(data).

@@ -19,10 +19,10 @@ class DirectorySectionScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            // image: DecorationImage(
-            //   image: AssetImage(''),
-            // ),
-            ),
+          image: DecorationImage(
+            image: AssetImage('lib/assets/images/supermarket_corridor.jpg'),
+          ),
+        ),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final width = constraints.maxWidth;
