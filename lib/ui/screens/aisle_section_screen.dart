@@ -1,3 +1,4 @@
+import 'package:dragger/widgets/draggable_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,8 +10,7 @@ class AisleSectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dB = Provider.of<DbWherehouse>(context);
-    final Category arguments =
-        ModalRoute.of(context)!.settings.arguments as Category;
+    final arguments = ModalRoute.of(context)!.settings.arguments as Category;
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -18,9 +18,29 @@ class AisleSectionScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
+                  itemCount: 5,
                   itemBuilder: (context, index) {
-                    dB.getProducts(arguments, index);
-                    return dB.genericProduct.productWidget;
+                    dB.getProducts(Category.bebidas, index);
+                    return SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: DraggableProduct(
+                        genericProduct: dB.genericProduct,
+                        feedback: dB.genericProduct.productWidget,
+                        childWhenDragging: ShaderMask(
+                          child: dB.genericProduct.productWidget,
+                          shaderCallback: (Rect bounds) {
+                            return LinearGradient(
+                              colors: [
+                                Colors.grey.shade900,
+                                Colors.black,
+                              ],
+                            ).createShader(bounds);
+                          },
+                        ),
+                        child: dB.genericProduct.productWidget,
+                      ),
+                    );
                   },
                 ),
               ),
