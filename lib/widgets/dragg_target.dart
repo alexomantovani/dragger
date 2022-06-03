@@ -32,11 +32,21 @@ class _DraggTargetState extends State<DraggTarget> {
     //Inside the build method return a DragTarget widget of DragTarget<GenericProduct>().
     return DragTarget<GenericProduct>(
       builder: (context, candidateData, rejectedData) {
+        List<Widget> cartProducts = List<Widget>.generate(
+          dB.cartProdcuts.length,
+          (index) => SizedBox(
+            width: size.width * 0.2,
+            height: size.height * 0.16,
+            child: dB.cartProdcuts[index],
+          ),
+        );
         //In its builder function proportie check if the dB.cartProducts isEmpty, if it is empty,
         //return only the supermarket_cart picture. If it is not empty, return a Stack widget
         //with the supermarket_cart on top and the dB.cartProducts above.
         if (dB.cartProdcuts.isEmpty) {
           return SizedBox(
+            width: size.width,
+            height: size.height * 0.3,
             child: Image.asset('lib/assets/images/supermarket_cart.png'),
           );
         } else {
@@ -45,14 +55,17 @@ class _DraggTargetState extends State<DraggTarget> {
           //be in its respective files.
           return Stack(
             children: [
-              SizedBox(
-                width: size.width * 0.22,
-                height: size.height * 0.12,
+              Positioned(
+                left: size.width * 0.4,
+                bottom: size.height * 0.15,
                 child: Stack(
-                  children: dB.cartProdcuts,
+                  children: cartProducts,
                 ),
               ),
-              Image.asset('lib/assets/images/supermarket_cart.png'),
+              Image.asset(
+                'lib/assets/images/supermarket_cart.png',
+                fit: BoxFit.cover,
+              ),
             ],
           );
         }
