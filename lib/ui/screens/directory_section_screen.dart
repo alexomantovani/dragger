@@ -19,9 +19,15 @@ class DirectorySectionScreen extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/assets/images/supermarket_corridor.jpg'),
+            image:
+                const AssetImage('lib/assets/images/supermarket_corridor.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.1),
+              BlendMode.dstOver,
+            ),
           ),
         ),
         child: LayoutBuilder(
@@ -94,8 +100,8 @@ class DirectorySectionScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           const AisleSectionScreen(),
-                                      settings: RouteSettings(
-                                        arguments: Category.bebidas.name,
+                                      settings: const RouteSettings(
+                                        arguments: Category.bebidas,
                                       ),
                                     ),
                                   );
