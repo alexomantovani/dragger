@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 
 //Import DbWherehouse and DirectorySectionScreen
 import '/data/db_wherehouse.dart';
-import 'ui/screens/directory_section_screen.dart';
+// import 'ui/screens/directory_section_screen.dart';
+import '/ui/screens/front_doors_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       create: (context) => DbWherehouse(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: DirectorySectionScreen(),
+        home: FrontDoorsScreen(),
       ),
     );
   }
