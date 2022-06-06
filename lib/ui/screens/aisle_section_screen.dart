@@ -1,9 +1,9 @@
-import 'package:dragger/widgets/dragg_target.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/data/db_wherehouse.dart';
 import '/widgets/draggable_product.dart';
+import '/widgets/dragg_target.dart';
 
 class AisleSectionScreen extends StatelessWidget {
   const AisleSectionScreen({Key? key}) : super(key: key);
