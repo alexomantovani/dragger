@@ -106,7 +106,56 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
                       height: size.height * 0.5,
                       width: size.width * 0.69,
                       child: Column(
-                        children: const [],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: size.width * 0.1,
+                            height: size.height * 0.015,
+                            decoration:
+                                BoxDecoration(color: Colors.grey.shade500),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: const Alignment(0.95, 0.0),
+                            child: Container(
+                              width: size.width * 0.015,
+                              height: size.height * 0.09,
+                              color: Colors.grey.shade500,
+                            ),
+                          ),
+                          Container(
+                            width: size.width * 0.1,
+                            height: size.height * 0.015,
+                            decoration:
+                                BoxDecoration(color: Colors.grey.shade500),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -127,7 +176,56 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
                       height: size.height * 0.5,
                       width: size.width * 0.69,
                       child: Column(
-                        children: const [],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: size.width * 0.1,
+                            height: size.height * 0.015,
+                            decoration:
+                                BoxDecoration(color: Colors.grey.shade500),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: const Alignment(-0.95, 0.0),
+                            child: Container(
+                              width: size.width * 0.015,
+                              height: size.height * 0.09,
+                              color: Colors.grey.shade500,
+                            ),
+                          ),
+                          Container(
+                            width: size.width * 0.1,
+                            height: size.height * 0.015,
+                            decoration:
+                                BoxDecoration(color: Colors.grey.shade500),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                                CircleAvatar(
+                                  radius: size.width * 0.01,
+                                  backgroundColor: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
