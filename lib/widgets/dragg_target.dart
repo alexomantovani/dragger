@@ -47,7 +47,10 @@ class _DraggTargetState extends State<DraggTarget> {
           return SizedBox(
             width: size.width,
             height: size.height * 0.3,
-            child: Image.asset('lib/assets/images/supermarket_cart.png'),
+            child: Image.asset(
+              'lib/assets/images/scene/supermarket_cart.png',
+              fit: BoxFit.contain,
+            ),
           );
         } else {
           //In its onAccept: (data){} function property call the setState method with the dB.getCartProducts(data).
@@ -57,14 +60,18 @@ class _DraggTargetState extends State<DraggTarget> {
             children: [
               Positioned(
                 left: size.width * 0.4,
-                bottom: size.height * 0.15,
+                bottom: size.height * 0.08,
                 child: Stack(
                   children: cartProducts,
                 ),
               ),
-              Image.asset(
-                'lib/assets/images/supermarket_cart.png',
-                fit: BoxFit.cover,
+              SizedBox(
+                width: size.width,
+                height: size.height * 0.3,
+                child: Image.asset(
+                  'lib/assets/images/scene/supermarket_cart.png',
+                  fit: BoxFit.contain,
+                ),
               ),
             ],
           );
