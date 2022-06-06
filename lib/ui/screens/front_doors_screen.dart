@@ -1,10 +1,10 @@
-//Import the Material package
-// ignore_for_file: use_build_context_synchronously
-
+//Import dart:math package
 import 'dart:math';
 
+//Import the Material package
 import 'package:flutter/material.dart';
 
+//Import corridor_screen.dart file
 import 'corridor_screen.dart';
 
 //Create a StatefulWidget called FrontDoorsScreen
@@ -60,6 +60,14 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
   void didChangeDependencies() {
     size = MediaQuery.of(context).size;
     super.didChangeDependencies();
+  }
+
+  void navigateTo() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CorridorScreen(),
+      ),
+    );
   }
 
   @override
@@ -144,11 +152,7 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
             onPressed: () async {
               openTheDoors();
               await Future.delayed(const Duration(milliseconds: 2500));
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const CorridorScreen(),
-                ),
-              );
+              navigateTo();
             },
             child: const Text(
               'Abrir',
