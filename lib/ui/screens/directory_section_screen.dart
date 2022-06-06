@@ -3,34 +3,164 @@ import 'package:flutter/material.dart';
 import '/data/db_wherehouse.dart';
 import '/ui/screens/aisle_section_screen.dart';
 
-class DirectorySectionScreen extends StatelessWidget {
+class DirectorySectionScreen extends StatefulWidget {
   //Turn DirectorySectionScreen into a StatefulWidget
   const DirectorySectionScreen({Key? key}) : super(key: key);
 
   @override
+  State<DirectorySectionScreen> createState() => _DirectorySectionScreenState();
+}
+
+class _DirectorySectionScreenState extends State<DirectorySectionScreen>
+    with TickerProviderStateMixin {
+  //Create 4 Animation<double> and 4 AnimationController() for the Directory boards side animations
+  //The boards will come out of the screen from the sides(left and right) and reach it's positions.
+  late Animation<double> sideAnimationOne;
+  late AnimationController sideAnimationOneController;
+
+  late Animation<double> sideAnimationTwo;
+  late AnimationController sideAnimationTwoController;
+
+  late Animation<double> sideAnimationThree;
+  late AnimationController sideAnimationThreeController;
+
+  late Animation<double> sideAnimationFour;
+  late AnimationController sideAnimationFourController;
+
+  //Create an Animation<double> and an AnimationController() to set the vertical drop of the Directory Structure.
+  //The central structure will drop from the top center of the screen and stop at the last 2 boards mid center.
+  late Animation<double> dropAnimation;
+  late AnimationController dropAnimationController;
+
+  //Create an Animation<double> and an AnimationController() to set the horizontal expansion of the Directory Structure.
+  //The 4 secondary parts of the Directory Structure will expand verticaly at the mid center of the boards level.
+  late Animation<double> expansionAnimation;
+  late AnimationController expansionAnimationController;
+
+  @override
+  void initState() {
+    dropAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+
+    dropAnimation = Tween<double>(begin: 0.0, end: 0.805).animate(
+      CurvedAnimation(
+        parent: dropAnimationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    expansionAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+
+    expansionAnimation = Tween<double>(begin: 0.1, end: 0.0).animate(
+      CurvedAnimation(
+        parent: dropAnimationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    sideAnimationOneController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    sideAnimationOne = Tween<double>(begin: -0.41, end: 0.0).animate(
+      CurvedAnimation(
+        parent: sideAnimationOneController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          sideAnimationTwoController.forward();
+        }
+      });
+    Future.delayed(const Duration(seconds: 2));
+    sideAnimationOneController.forward();
+
+    sideAnimationTwoController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+    sideAnimationTwo = Tween<double>(begin: -0.41, end: 0.0).animate(
+      CurvedAnimation(
+        parent: sideAnimationTwoController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          sideAnimationThreeController.forward();
+        }
+      });
+
+    sideAnimationThreeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    sideAnimationThree = Tween<double>(begin: -0.41, end: 0.0).animate(
+      CurvedAnimation(
+        parent: sideAnimationThreeController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          sideAnimationFourController.forward();
+          dropAnimationController.forward();
+        }
+      });
+
+    sideAnimationFourController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+    sideAnimationFour = Tween<double>(begin: -0.41, end: 0.0).animate(
+      CurvedAnimation(
+        parent: sideAnimationFourController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          expansionAnimationController.forward();
+        }
+      });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //Create an Animation<double> and an AnimationController() for the Directory boards side animations
-    //The boards will come out of the screen from the sides(left and right) and reach it's positions.
-
-    //Create 3 Animation<double> 3 AnimationController() to make a flip rotation animation of the boards.
-    //The las 6 boards will flip in a cascade event and opposing rotations.
-
-    //Create an Animation<double> and an AnimationController() to set the vertical drop of the Directory Structure.
-    //The central structure will drop from the top center of the screen and stop at the last 2 boards mid center.
-
-    //Create an Animation<double> and an AnimationController() to set the horizontal expansion of the Directory Structure.
-    //The 4 secondary parts of the Directory Structure will expand verticaly at the mid center of the boards level.
-
     //All Animation<double> and AnimationController will be of type late and will be initialized in the initState() method.
 
     //In the Scafold's body create a Container that will get the whole screen size and an image in the background.
     //As the Containers's child, create a Stack.
     //the Stack will have 2 children, the one on top will be the Column that will contain 8 squares
     //100x100 in proportion with the device screen size. In the squares's child will contain 8 Text widget with the section's names(Categories DbWherehouse).
-    //The child above will be 5 ClipPath widgets that will form the Directory Sign Structure,
-    //4 horizontal and 1 vertical ClipPath widgets of 2px thick in proportion with the device screen size.
-
-    //Each square will be in a GestureDetector to trigger an onTap function and navigate to the respective aisle product section
 
     return Scaffold(
       body: LayoutBuilder(
@@ -44,40 +174,65 @@ class DirectorySectionScreen extends StatelessWidget {
                 offset: Offset(width / 2, 0.0),
                 child: Container(
                   width: width * 0.007,
-                  height: height * 0.805,
+                  height: height * dropAnimation.value,
                   color: Colors.black,
                 ),
               ),
-              Transform.translate(
-                offset: Offset(width / 2.65, height / 6.7),
-                child: SizedBox(
-                  height: height * 0.75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
+              Container(
+                transformAlignment: FractionalOffset.center,
+                transform: Matrix4.identity()
+                  ..translate(width / 2.48, height / 6.7),
+                height: height * 0.75,
+                width: width * 0.2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: width * expansionAnimation.value,
+                          left: width * expansionAnimation.value),
+                      child: Container(
+                        alignment: FractionalOffset.center,
                         width: width / 4,
                         height: height * 0.003,
                         color: Colors.black,
                       ),
-                      Container(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: width * expansionAnimation.value,
+                          left: width * expansionAnimation.value),
+                      child: Container(
+                        alignment: FractionalOffset.center,
                         width: width / 4,
                         height: height * 0.003,
                         color: Colors.black,
                       ),
-                      Container(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: width * expansionAnimation.value,
+                          left: width * expansionAnimation.value),
+                      child: Container(
+                        alignment: FractionalOffset.center,
                         width: width / 4,
                         height: height * 0.003,
                         color: Colors.black,
                       ),
-                      Container(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: width * expansionAnimation.value,
+                          left: width * expansionAnimation.value),
+                      child: Container(
+                        alignment: FractionalOffset.center,
                         width: width / 4,
                         height: height * 0.003,
                         color: Colors.black,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Transform.translate(
@@ -93,6 +248,12 @@ class DirectorySectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate(
+                                  (width * sideAnimationOne.value)
+                                      .roundToDouble(),
+                                  0.0),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -122,6 +283,12 @@ class DirectorySectionScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate(
+                                  (-width * sideAnimationOne.value)
+                                      .roundToDouble(),
+                                  0.0),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -143,6 +310,10 @@ class DirectorySectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate((width * sideAnimationTwo.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -159,6 +330,10 @@ class DirectorySectionScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate(-(width * sideAnimationTwo.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -180,6 +355,10 @@ class DirectorySectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate((width * sideAnimationThree.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -196,6 +375,10 @@ class DirectorySectionScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate(-(width * sideAnimationThree.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -217,6 +400,10 @@ class DirectorySectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate((width * sideAnimationFour.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
@@ -233,6 +420,10 @@ class DirectorySectionScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            transformAlignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..translate(-(width * sideAnimationFour.value)
+                                  .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
                             color: Colors.blue,
