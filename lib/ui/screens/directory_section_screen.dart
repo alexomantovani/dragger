@@ -4,10 +4,25 @@ import '/data/db_wherehouse.dart';
 import '/ui/screens/aisle_section_screen.dart';
 
 class DirectorySectionScreen extends StatelessWidget {
+  //Turn DirectorySectionScreen into a StatefulWidget
   const DirectorySectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //Create an Animation<double> and an AnimationController() for the Directory boards side animations
+    //The boards will come out of the screen from the sides(left and right) and reach it's positions.
+
+    //Create 3 Animation<double> 3 AnimationController() to make a flip rotation animation of the boards.
+    //The las 6 boards will flip in a cascade event and opposing rotations.
+
+    //Create an Animation<double> and an AnimationController() to set the vertical drop of the Directory Structure.
+    //The central structure will drop from the top center of the screen and stop at the last 2 boards mid center.
+
+    //Create an Animation<double> and an AnimationController() to set the horizontal expansion of the Directory Structure.
+    //The 4 secondary parts of the Directory Structure will expand verticaly at the mid center of the boards level.
+
+    //All Animation<double> and AnimationController will be of type late and will be initialized in the initState() method.
+
     //In the Scafold's body create a Container that will get the whole screen size and an image in the background.
     //As the Containers's child, create a Stack.
     //the Stack will have 2 children, the one on top will be the Column that will contain 8 squares
