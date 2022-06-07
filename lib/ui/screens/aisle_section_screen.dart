@@ -69,6 +69,6 @@ class AisleSectionScreen extends StatelessWidget {
 
 //The Column() needs to go and give the place to a Stack() widget
 //The new widgets and components will need if and case statements to be positioned
-//Add an AppBar() to the screen with to buttons, an arrow back to return to the DirectorySectionScreen
+//Add an AppBar() to the screen with two buttons, an arrow back to return to the DirectorySectionScreen
 //And an supermarket_cart icon to go to the orderSummary 
 //Add a warning sign at the top of the shelve to let the user know what needs to be done with the products.
