@@ -1,4 +1,7 @@
 //Import the Material package
+import 'package:dragger/widgets/processing_one.dart';
+import 'package:dragger/widgets/processing_three.dart';
+import 'package:dragger/widgets/processing_two.dart';
 import 'package:flutter/material.dart';
 
 //Create a StatefulWidget called ProcessingScreen
@@ -63,7 +66,11 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
       ),
       body: PageView(
         controller: pageController,
-        children: const [],
+        children: const [
+          ProcessingOne(),
+          ProcessingTwo(),
+          ProcessinThree(),
+        ],
       ),
       bottomSheet: Container(
         color: Colors.white,
@@ -133,7 +140,15 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
                   size.height * 0.05,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                pageController.animateToPage(
+                  2,
+                  duration: const Duration(
+                    seconds: 1,
+                  ),
+                  curve: Curves.elasticInOut,
+                );
+              },
               child: const Text(
                 'Continuar',
                 style: TextStyle(
