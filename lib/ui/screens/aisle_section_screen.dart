@@ -1,3 +1,4 @@
+import 'package:dragger/ui/screens/processing_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,12 +85,33 @@ class AisleSectionScreen extends StatelessWidget {
                           ),
                           height: size.height * 0.15,
                           child: Column(
-                            children: const [
-                              Text(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
                                 'Resumo de Valores',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black,
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProcessingScreen(),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.lightBlue.shade100,
+                                ),
+                                child: const Text(
+                                  'Finalizar',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ],
