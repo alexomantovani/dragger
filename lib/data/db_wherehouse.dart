@@ -329,7 +329,7 @@ class DbWherehouse extends ChangeNotifier {
     String orderSummary = '';
 
     totalQuantity == 0
-        ? totalQuantity = selectedQuantity
+        ? totalQuantity = selectedQuantity + 1
         : totalQuantity += selectedQuantity;
 
     _orderImageUrls.add(genericProduct.productImageUrl);
@@ -365,10 +365,10 @@ class DbWherehouse extends ChangeNotifier {
   void getOrderTotal() {
     if (subTotal <= 219.99) {
       total = subTotal + serviceFee + deliveryFee;
-      orderDayTimeStamp = DateTime.now().toLocal().toString();
+      orderDayTimeStamp = DateTime.now().toString();
     } else {
       total = subTotal + deliveryFee;
-      orderDayTimeStamp = DateTime.now().toLocal().toString();
+      orderDayTimeStamp = DateTime.now().toString();
     }
     notifyListeners();
   }
@@ -396,5 +396,6 @@ class DbWherehouse extends ChangeNotifier {
     _orderValueSummary.clear();
     subTotal = 0.0;
     total = 0.0;
+    totalQuantity = 0;
   }
 }
