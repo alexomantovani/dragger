@@ -1,4 +1,3 @@
-import 'package:dragger/ui/screens/processing_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +5,7 @@ import 'package:provider/provider.dart';
 import '/data/db_wherehouse.dart';
 import '/widgets/draggable_product.dart';
 import '/widgets/dragg_target.dart';
+import '/ui/screens/processing_screen.dart';
 
 class AisleSectionScreen extends StatelessWidget {
   const AisleSectionScreen({Key? key}) : super(key: key);
@@ -86,12 +86,23 @@ class AisleSectionScreen extends StatelessWidget {
                           height: size.height * 0.15,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Text(
                                 'Resumo de Valores',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  padding:
+                                      EdgeInsets.only(left: size.width * 0.15),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: dB.orderValueSummary.length,
+                                  itemBuilder: (context, index) =>
+                                      dB.orderValueSummary[index],
                                 ),
                               ),
                               ElevatedButton(
