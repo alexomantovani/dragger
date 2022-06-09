@@ -1,5 +1,6 @@
 //Import Material package.
 import 'package:dragger/data/db_wherehouse.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //Import Provider package.
 import 'package:provider/provider.dart';
@@ -18,6 +19,18 @@ class DraggTarget extends StatefulWidget {
 class _DraggTargetState extends State<DraggTarget> {
   //Inside the DraggTarget state create a DbWherehouse variable and initialize it with DbWherehouse() called dB.
   DbWherehouse dB = DbWherehouse();
+
+  ValueNotifier<int> selectedQuantity = ValueNotifier<int>(1);
+  int qtd = 0;
+  void upDateSelectedQuantity(String sign) {
+    if (sign == '+') {
+      selectedQuantity.value++;
+      qtd = selectedQuantity.value;
+    } else {
+      selectedQuantity.value--;
+      qtd = selectedQuantity.value;
+    }
+  }
 
   //Create a didChageDependecies() method and initialize dB with the Provider package.
   @override
@@ -81,6 +94,70 @@ class _DraggTargetState extends State<DraggTarget> {
         setState(() {
           dB.saveCartProducts(productData);
         });
+
+        showCupertinoDialog<String>(
+          context: context,
+          builder: (context) {
+            return CupertinoAlertDialog(
+              title: const Text(
+                'Confirmar Quantidade',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                ),
+              ),
+              content: ValueListenableBuilder(
+                valueListenable: selectedQuantity,
+                builder: (context, value, child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    selectedQuantity.value == 0
+                        ? TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              dB.getOrderPartial(productData, qtd);
+                            },
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.black,
+                            ),
+                          )
+                        : TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              dB.getOrderPartial(productData, qtd);
+                            },
+                            child: Text(
+                              '${selectedQuantity.value}',
+                              style: const TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                  ],
+                ),
+              ),
+              actions: [
+                CupertinoDialogAction(
+                  onPressed: () => setState(() => upDateSelectedQuantity('-')),
+                  child: const Icon(
+                    Icons.remove,
+                    color: Colors.black,
+                  ),
+                ),
+                CupertinoDialogAction(
+                  onPressed: () => setState(() => upDateSelectedQuantity('+')),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       },
     );
   }
