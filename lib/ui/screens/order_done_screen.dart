@@ -91,14 +91,14 @@ class _OrderDoneScreenState extends State<OrderDoneScreen> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.check_circle,
                 color: Colors.green,
               ),
               Text(
-                'Pedido realizado em:',
-                style: TextStyle(
+                'Pedido realizado em: ${dB.orderDayTimeStamp}',
+                style: const TextStyle(
                   fontSize: 18.0,
                   color: Colors.black,
                 ),
