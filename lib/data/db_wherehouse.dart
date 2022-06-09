@@ -328,7 +328,7 @@ class DbWherehouse extends ChangeNotifier {
   void getOrderPartial(GenericProduct genericProduct, int selectedQuantity) {
     String orderSummary = '';
 
-    totalQuantity == 0
+    totalQuantity == 0 && selectedQuantity == 0
         ? totalQuantity = selectedQuantity + 1
         : totalQuantity += selectedQuantity;
 
