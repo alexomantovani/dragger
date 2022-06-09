@@ -19,9 +19,8 @@ class DraggTarget extends StatefulWidget {
 class _DraggTargetState extends State<DraggTarget> {
   //Inside the DraggTarget state create a DbWherehouse variable and initialize it with DbWherehouse() called dB.
   DbWherehouse dB = DbWherehouse();
-
   ValueNotifier<int> selectedQuantity = ValueNotifier<int>(1);
-  int qtd = 0;
+  int qtd = 1;
   void upDateSelectedQuantity(String sign) {
     if (sign == '+') {
       selectedQuantity.value++;
@@ -43,16 +42,17 @@ class _DraggTargetState extends State<DraggTarget> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     //Inside the build method return a DragTarget widget of DragTarget<GenericProduct>().
+    List<Widget> cartProducts = List<Widget>.generate(
+      dB.cartProdcuts.length,
+      (index) => SizedBox(
+        key: GlobalKey(debugLabel: dB.cartProdcuts[index].key.toString()),
+        width: size.width * 0.2,
+        height: size.height * 0.16,
+        child: dB.cartProdcuts[index],
+      ),
+    );
     return DragTarget<GenericProduct>(
       builder: (context, candidateData, rejectedData) {
-        List<Widget> cartProducts = List<Widget>.generate(
-          dB.cartProdcuts.length,
-          (index) => SizedBox(
-            width: size.width * 0.2,
-            height: size.height * 0.16,
-            child: dB.cartProdcuts[index],
-          ),
-        );
         //In its builder function proportie check if the dB.cartProducts isEmpty, if it is empty,
         //return only the supermarket_cart picture. If it is not empty, return a Stack widget
         //with the supermarket_cart on top and the dB.cartProducts above.
@@ -90,11 +90,7 @@ class _DraggTargetState extends State<DraggTarget> {
           );
         }
       },
-      onAccept: (productData) {
-        setState(() {
-          dB.saveCartProducts(productData);
-        });
-
+      onAccept: (productData) async {
         showCupertinoDialog<String>(
           context: context,
           builder: (context) {
@@ -116,7 +112,6 @@ class _DraggTargetState extends State<DraggTarget> {
                         ? TextButton(
                             onPressed: () {
                               Navigator.pop(context);
-                              dB.getOrderPartial(productData, qtd);
                             },
                             child: const Icon(
                               Icons.delete,
@@ -127,6 +122,7 @@ class _DraggTargetState extends State<DraggTarget> {
                             onPressed: () {
                               Navigator.pop(context);
                               dB.getOrderPartial(productData, qtd);
+                              dB.saveCartProducts(productData);
                             },
                             child: Text(
                               '${selectedQuantity.value}',
