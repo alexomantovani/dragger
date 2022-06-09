@@ -317,6 +317,9 @@ class DbWherehouse extends ChangeNotifier {
   //Create a variable double that will receive the order partial subtotal. This variable will be called subTotal.
   double subTotal = 0.0;
 
+  //Create a variable int that will receive the order total item count. This variable will be called totalQuantity
+  int totalQuantity = 0;
+
   //Create a function that will receive the data from the DraggableProduct and the selected quantity as an integer,
   //and will calculate the order partial without the delivery fee and minimum order fee and save it to the subTotal.
   //using the data it`ll parse the productId, selected quantity and total price to String in a Text widget.
@@ -324,6 +327,10 @@ class DbWherehouse extends ChangeNotifier {
   //this function will be called getOrderPartial(GenericProduct genericProduct, int selectedQuantity).
   void getOrderPartial(GenericProduct genericProduct, int selectedQuantity) {
     String orderSummary = '';
+
+    totalQuantity == 0
+        ? totalQuantity = selectedQuantity
+        : totalQuantity += selectedQuantity;
 
     _orderImageUrls.add(genericProduct.productImageUrl);
 
