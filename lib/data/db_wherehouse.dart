@@ -339,8 +339,8 @@ class DbWherehouse extends ChangeNotifier {
         : subTotal += genericProduct.productPrice * selectedQuantity;
 
     orderSummary = genericProduct.productId.contains('_')
-        ? '$selectedQuantity x ${genericProduct.productId.replaceFirst('_', ' ')}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2)}'
-        : '$selectedQuantity x ${genericProduct.productId}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2)}';
+        ? '$selectedQuantity x ${genericProduct.productId.replaceFirst('_', ' ')}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}'
+        : '$selectedQuantity x ${genericProduct.productId}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}';
     _orderValueSummary.add(Text(orderSummary));
 
     notifyListeners();
