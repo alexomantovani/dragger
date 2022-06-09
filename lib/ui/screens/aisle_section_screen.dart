@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,19 +9,65 @@ import '/widgets/draggable_product.dart';
 import '/widgets/dragg_target.dart';
 import '/ui/screens/processing_screen.dart';
 
-class AisleSectionScreen extends StatelessWidget {
+class AisleSectionScreen extends StatefulWidget {
   const AisleSectionScreen({Key? key}) : super(key: key);
 
   @override
+  State<AisleSectionScreen> createState() => _AisleSectionScreenState();
+}
+
+class _AisleSectionScreenState extends State<AisleSectionScreen> {
+  late DbWherehouse dB;
+  late Size size;
+  late SnackBar snackBar;
+
+  @override
+  void initState() {
+    showSnackBar();
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    dB = Provider.of<DbWherehouse>(context);
+    size = MediaQuery.of(context).size;
+    super.didChangeDependencies();
+  }
+
+  //Create callback function to the SnackBar
+  void showSnackBar() async {
+    snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      dismissDirection: DismissDirection.up,
+      margin: const EdgeInsets.symmetric(
+        vertical: 352.0,
+        horizontal: 22.0,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      duration: const Duration(seconds: 3),
+      backgroundColor: Colors.lightBlue.shade100,
+      content: const Text(
+        'Arraste os produtos até o carrinho',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18.0,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+    await Future.delayed(const Duration(seconds: 1));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final dB = Provider.of<DbWherehouse>(context);
     final arguments = ModalRoute.of(context)!.settings.arguments as Category;
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            print(size.width * 0.05);
             showCupertinoDialog<String>(
               context: context,
               builder: (context) {
@@ -147,9 +195,9 @@ class AisleSectionScreen extends StatelessWidget {
                   color: Colors.red,
                 ),
                 width: size.width * 0.04,
-                child: const Text(
-                  '3',
-                  style: TextStyle(
+                child: Text(
+                  '${dB.totalQuantity}',
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
