@@ -22,6 +22,7 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
   //Both variables will be declared as late and will be initialized in the initState() method.
   late Animation<double> animation;
   late AnimationController animationController;
+  bool isVisible = false;
 
   //Call initState() method
   @override
@@ -159,6 +160,19 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
                       ),
                     ),
                   ),
+                  Visibility(
+                    visible: isVisible,
+                    child: SizedBox(
+                      width: size.width * 0.01,
+                      height: size.height * 0.01,
+                      child: Hero(
+                        tag: 'Corridor',
+                        child: Image.asset(
+                          'lib/assets/images/scene/supermarket_corridor.jpg',
+                        ),
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -249,7 +263,8 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
             ),
             onPressed: () async {
               openTheDoors();
-              await Future.delayed(const Duration(milliseconds: 2500));
+              setState(() => isVisible = true);
+              await Future.delayed(const Duration(milliseconds: 1000));
               navigateTo();
             },
             child: const Text(

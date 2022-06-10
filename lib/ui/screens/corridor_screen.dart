@@ -8,46 +8,58 @@ class CorridorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image:
-                AssetImage('lib/assets/images/scene/supermarket_corridor.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.lightBlueAccent.withOpacity(0.4),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const DirectorySectionScreen(),
-                  ),
-                );
-              },
-              child: const Text(
-                'Comprar',
-                style: TextStyle(
-                  fontSize: 30.0,
+      body: Hero(
+        tag: 'Corridor',
+        child: Center(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'lib/assets/images/scene/supermarket_corridor.jpg',
                 ),
+                fit: BoxFit.cover,
               ),
             ),
-            Icon(
-              Icons.shopping_cart,
-              size: 80.0,
-              color: Colors.lightBlueAccent.withOpacity(0.6),
+            width: size.width,
+            height: size.height,
+            padding: EdgeInsets.symmetric(vertical: size.height * 0.05),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  flex: 8,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent.withOpacity(0.4),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const DirectorySectionScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Comprar',
+                      style: TextStyle(
+                        fontSize: 30.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Icon(
+                    Icons.shopping_cart,
+                    size: 80.0,
+                    color: Colors.lightBlueAccent.withOpacity(0.6),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 30.0,
-            )
-          ],
+          ),
         ),
       ),
     );
