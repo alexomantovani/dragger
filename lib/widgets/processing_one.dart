@@ -21,35 +21,74 @@ class ProcessingOne extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final DbWherehouse dB = Provider.of<DbWherehouse>(context);
-    return Column(
-      children: [
-        ListTile(
-          leading: CircleAvatar(
-            radius: size.width * 0.1,
-            backgroundColor: Colors.lightBlue.shade100,
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: size.width * 0.05,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue.shade100,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                width: size.width * 0.15,
+                height: size.height * 0.1,
+                padding: const EdgeInsets.all(10.0),
+                child: Image.asset(
+                  'lib/assets/images/scene/supermarket_delivery.png',
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+              SizedBox(
+                width: size.width * 0.05,
+              ),
+              const Text(
+                'Supermercado Interativo',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
-          title: const Text(
-            'Supermercado Interativo',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black,
-            ),
+          Divider(
+            color: Colors.grey.shade500,
+            thickness: 1.4,
+            endIndent: 20.0,
+            indent: 20.0,
           ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: dB.orderValueSummary.length,
-            itemBuilder: (context, index) => ListTile(
-              contentPadding: EdgeInsets.only(left: size.width * 0.08),
-              minVerticalPadding: size.height * 0.01,
-              title: dB.orderValueSummary[index],
-              trailing: Image.asset(
-                dB.orderImageUrls[index],
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: dB.orderValueSummary.length,
+              itemBuilder: (context, index) => ListTile(
+                contentPadding: EdgeInsets.only(left: size.width * 0.08),
+                minVerticalPadding: size.height * 0.01,
+                title: dB.orderValueSummary[index],
+                trailing: SizedBox(
+                  height: size.height * 0.08,
+                  width: size.width * 0.12,
+                  child: Image.asset(
+                    dB.orderImageUrls[index],
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -17,7 +17,6 @@ class ProcessinThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     final DbWherehouse dB = Provider.of<DbWherehouse>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,18 +78,17 @@ class ProcessinThree extends StatelessWidget {
           ),
         ),
         ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.lightBlue.shade100,
-            radius: size.width * 0.2,
+          leading:
+              Image.asset('lib/assets/images/scene/supermarket_visa_icon.png'),
+          title: const Text('Crédito'),
+          subtitle: Text(
+            'Visa ***** 1234',
+            style: TextStyle(
+              color: Colors.grey.shade500,
+            ),
           ),
-          title: Text(
-            '1234',
-            style: TextStyle(color: Colors.grey.shade200),
-          ),
-          trailing: const Card(
-            child: Text('Visa'),
-          ),
-        )
+          trailing: const Text('Trocar'),
+        ),
       ],
     );
   }

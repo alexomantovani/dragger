@@ -1,8 +1,12 @@
 //Import the Material package
+import 'package:dragger/data/db_wherehouse.dart';
+import 'package:dragger/ui/screens/directory_section_screen.dart';
+import 'package:dragger/ui/screens/order_done_screen.dart';
 import 'package:dragger/widgets/processing_one.dart';
 import 'package:dragger/widgets/processing_three.dart';
 import 'package:dragger/widgets/processing_two.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //Create a StatefulWidget called ProcessingScreen
 class ProcessingScreen extends StatefulWidget {
@@ -15,6 +19,9 @@ class ProcessingScreen extends StatefulWidget {
 class _ProcessingScreenState extends State<ProcessingScreen> {
   late PageController pageController;
   late Size size;
+  late DbWherehouse dB;
+  int pageIndex = 0;
+  String elevatedButtonText = 'Continuar';
 
   @override
   void initState() {
@@ -25,6 +32,7 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
   @override
   void didChangeDependencies() {
     size = MediaQuery.of(context).size;
+    dB = Provider.of<DbWherehouse>(context);
     super.didChangeDependencies();
   }
 
@@ -53,7 +61,14 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() => dB.getInitialState());
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const DirectorySectionScreen(),
+                ),
+              );
+            },
             child: const Text(
               'Limpar',
               style: TextStyle(
@@ -66,6 +81,11 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
       ),
       body: PageView(
         controller: pageController,
+        onPageChanged: (index) {
+          setState(() {
+            pageIndex = index;
+          });
+        },
         children: const [
           ProcessingOne(),
           ProcessingTwo(),
@@ -90,7 +110,9 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
               trailing: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  const Text('R\$Valor'),
+                  Text(pageIndex == 0
+                      ? 'R\$${dB.subTotal.toStringAsFixed(2).replaceAll('.', ',')}'
+                      : 'R\$${dB.total.toStringAsFixed(2).replaceAll('.', ',')}'),
                   IconButton(
                     onPressed: () {
                       showModalBottomSheet(
@@ -104,20 +126,55 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
                               decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(65.0),
-                                  topRight: Radius.circular(65.0),
+                                  topLeft: Radius.circular(35.0),
+                                  topRight: Radius.circular(35.0),
                                 ),
                               ),
-                              height: size.height * 0.15,
+                              height: size.height * 0.25,
                               child: Column(
-                                children: const [
-                                  Text(
+                                children: [
+                                  const Text(
                                     'Resumo de Valores',
                                     style: TextStyle(
                                       fontSize: 18.0,
                                       color: Colors.black,
                                     ),
                                   ),
+                                  ListTile(
+                                    title: const Text(
+                                      'Total',
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    trailing: Text(
+                                        'R\$${dB.subTotal.toStringAsFixed(2).replaceFirst('.', ',')}'),
+                                  ),
+                                  ListTile(
+                                    title: const Text(
+                                      'Taxa de Entrega',
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    trailing: Text(
+                                        'R\$${dB.deliveryFee.toStringAsFixed(2).replaceFirst('.', ',')}'),
+                                  ),
+                                  dB.subTotal <= 219.99
+                                      ? ListTile(
+                                          title: const Text(
+                                            'Taxa de Serviço',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          trailing: Text(
+                                              'R\$${dB.serviceFee.toStringAsFixed(2).replaceFirst('.', ',')}'),
+                                        )
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
@@ -141,17 +198,28 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
                 ),
               ),
               onPressed: () {
-                pageController.animateToPage(
-                  2,
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  curve: Curves.elasticInOut,
-                );
+                if (pageIndex == 0) {
+                  pageController.nextPage(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.linear);
+                  dB.getOrderTotal();
+                } else if (pageIndex == 1) {
+                  pageController.nextPage(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.linear);
+                  setState(() => elevatedButtonText = 'Finalizar Pedido');
+                } else {
+                  dB.getPayment();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const OrderDoneScreen(),
+                    ),
+                  );
+                }
               },
-              child: const Text(
-                'Continuar',
-                style: TextStyle(
+              child: Text(
+                elevatedButtonText,
+                style: const TextStyle(
                   fontSize: 18.0,
                   color: Colors.black,
                 ),
