@@ -1,4 +1,5 @@
 //Import the Material package
+import 'package:dragger/ui/screens/directory_section_screen.dart';
 import 'package:flutter/material.dart';
 //Import the Provider package
 import 'package:provider/provider.dart';
@@ -21,9 +22,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => DbWherehouse(),
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FrontDoorsScreen(),
+        home: const FrontDoorsScreen(),
+        routes: {
+          DirectorySectionScreen.routeName: (context) =>
+              const DirectorySectionScreen(),
+        },
       ),
     );
   }
