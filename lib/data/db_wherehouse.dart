@@ -289,6 +289,7 @@ class DbWherehouse extends ChangeNotifier {
   //this function will be called saveCartProducts(GenericProduct genericProduct).
   void saveCartProducts(GenericProduct genericProduct) {
     _cartProducts.add(SizedBox(
+      key: GlobalKey(debugLabel: genericProduct.productId),
       child: genericProduct.productWidget,
     ));
     notifyListeners();
@@ -339,11 +340,37 @@ class DbWherehouse extends ChangeNotifier {
         : subTotal += genericProduct.productPrice * selectedQuantity;
 
     orderSummary = genericProduct.productId.contains('_')
-        ? '$selectedQuantity x ${genericProduct.productId.replaceFirst('_', ' ')}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}'
-        : '$selectedQuantity x ${genericProduct.productId}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}';
+        ? '${selectedQuantity}x ${genericProduct.productId.replaceFirst('_', ' ')}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}'
+        : '${selectedQuantity}x ${genericProduct.productId}: R\$${(genericProduct.productPrice * selectedQuantity).toStringAsFixed(2).replaceFirst('.', ',')}';
     _orderValueSummary.add(Text(orderSummary));
 
     notifyListeners();
+  }
+
+  //Create function to delete a single item from orderSummary
+  void deleteSingleItem(int index) {
+    var xIndex = _orderValueSummary[index]
+        .toString()
+        .substring(6, _orderValueSummary[index].toString().lastIndexOf('")'))
+        .indexOf('x');
+
+    var newQuantity = int.parse(_orderValueSummary[index]
+        .toString()
+        .substring(6, _orderValueSummary[index].toString().lastIndexOf('")'))
+        .substring(0, xIndex));
+
+    if (xIndex == 1) {
+      subTotal -= genericProduct.productPrice *
+          int.parse(_orderValueSummary[index].toString().substring(6, 7));
+      totalQuantity -= newQuantity;
+    } else {
+      subTotal -= genericProduct.productPrice *
+          int.parse(_orderValueSummary[index].toString().substring(6, 8));
+      totalQuantity -= newQuantity;
+    }
+    _orderValueSummary.removeAt(index);
+    _orderImageUrls.removeAt(index);
+    _cartProducts.removeAt(index);
   }
 
   //Create a variable double that will receive the order final total. This variavle will be called total.
