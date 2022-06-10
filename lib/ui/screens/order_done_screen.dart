@@ -1,4 +1,8 @@
 //Import the Material package
+import 'dart:io';
+
+import 'package:dragger/ui/screens/front_doors_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //Import the Provider package
 import 'package:provider/provider.dart';
@@ -29,6 +33,7 @@ class _OrderDoneScreenState extends State<OrderDoneScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 40.0,
         backgroundColor: Colors.white,
         elevation: 0.0,
         title: const Text(
@@ -55,92 +60,150 @@ class _OrderDoneScreenState extends State<OrderDoneScreen> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ListTile(
-            contentPadding: const EdgeInsets.all(0.0),
-            horizontalTitleGap: -size.width * 0.02,
-            leading: Container(
-              decoration: BoxDecoration(
-                color: Colors.lightBlue.shade100,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1.0,
-                ),
+      body: dB.isPaying == true
+          ? Platform.isIOS
+              ? const Center(
+                  child: CupertinoActivityIndicator(),
+                )
+              : Center(
+                  child: SizedBox(
+                    width: size.width * 0.6,
+                    child: LinearProgressIndicator(
+                      color: Colors.lightBlue.shade100,
+                      minHeight: 4.0,
+                    ),
+                  ),
+                )
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue.shade100,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        width: size.width * 0.2,
+                        height: size.height * 0.2,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Image.asset(
+                          'lib/assets/images/scene/supermarket_delivery.png',
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.05,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Supermercado Interativo',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Pedido Nº ${dB.total.toStringAsFixed(0)}${dB.orderDayTimeStamp.toString().substring(5, 7)}22',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.grey.shade500,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(
+                        8.0,
+                      ),
+                    ),
+                    height: size.height * 0.05,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.check_circle,
+                          color: Colors.green,
+                        ),
+                        Text(
+                          'Pedido realizado em: ${dB.orderDayTimeStamp.substring(11, 19).trim()}',
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        20.0,
+                      ),
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2.0,
+                      ),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          'lib/assets/images/scene/supermarket_address_map.png',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    width: size.width * 0.95,
+                    height: size.height * 0.4,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  const Divider(
+                    color: Colors.grey,
+                    thickness: 1.2,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlue.shade100,
+                    ),
+                    onPressed: () {
+                      setState(() => dB.getInitialState());
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const FrontDoorsScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Recomeçar',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              width: size.width * 0.25,
-              height: size.height * 0.2,
             ),
-            title: const Text(
-              'Supermercado Interativo',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black,
-              ),
-            ),
-            subtitle: const Text(
-              'Pedido Nº',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-              ),
-              Text(
-                'Pedido realizado em: ${dB.orderDayTimeStamp}',
-                style: const TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                20.0,
-              ),
-              border: Border.all(
-                color: Colors.black,
-                width: 2.0,
-              ),
-              image: const DecorationImage(
-                image: AssetImage(
-                  'lib/assets/images/scene/supermarket_address_map.png',
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-            width: size.width * 0.95,
-            height: size.height * 0.4,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue.shade100,
-            ),
-            onPressed: () {
-              setState(() => dB.getInitialState());
-            },
-            child: const Text(
-              'Recomeçar',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
