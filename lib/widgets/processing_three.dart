@@ -1,5 +1,7 @@
 //Import the Material package
+import 'package:dragger/data/db_wherehouse.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //Create a StatelessWidget called ProcessingThree
 class ProcessinThree extends StatelessWidget {
@@ -16,20 +18,64 @@ class ProcessinThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final DbWherehouse dB = Provider.of<DbWherehouse>(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return const SizedBox();
-            },
+        ListTile(
+          title: const Text(
+            'Total',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Colors.black,
+            ),
           ),
+          trailing: Text(
+              'R\$${dB.subTotal.toStringAsFixed(2).replaceFirst('.', ',')}'),
         ),
-        const Text(
-          'Pagamento:',
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.black,
+        ListTile(
+          title: const Text(
+            'Taxa de Entrega',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Colors.black,
+            ),
+          ),
+          trailing: Text(
+              'R\$${dB.deliveryFee.toStringAsFixed(2).replaceFirst('.', ',')}'),
+        ),
+        dB.subTotal <= 219.99
+            ? ListTile(
+                title: const Text(
+                  'Taxa de Serviço',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.black,
+                  ),
+                ),
+                trailing: Text(
+                    'R\$${dB.serviceFee.toStringAsFixed(2).replaceFirst('.', ',')}'),
+              )
+            : const SizedBox(),
+        ListTile(
+          title: const Text(
+            'Total',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Colors.black,
+            ),
+          ),
+          trailing:
+              Text('R\$${dB.total.toStringAsFixed(2).replaceFirst('.', ',')}'),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Pagamento:',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Colors.black,
+            ),
           ),
         ),
         ListTile(
