@@ -1,5 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-
+import 'package:dragger/ui/screens/directory_section_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
       dismissDirection: DismissDirection.up,
       margin: const EdgeInsets.symmetric(
         vertical: 352.0,
-        horizontal: 22.0,
+        horizontal: 52.0,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       duration: const Duration(seconds: 3),
@@ -67,7 +67,6 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            print(size.width * 0.05);
             showCupertinoDialog<String>(
               context: context,
               builder: (context) {
@@ -84,7 +83,9 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                   actions: [
                     CupertinoDialogAction(
                       onPressed: () {
-                        Navigator.pop(context);
+                        setState(() => dB.getInitialState());
+                        Navigator.popAndPushNamed(
+                            context, DirectorySectionScreen.routeName);
                       },
                       child: const Icon(
                         Icons.thumb_down_alt,
@@ -92,7 +93,10 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                       ),
                     ),
                     CupertinoDialogAction(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.popAndPushNamed(
+                            context, DirectorySectionScreen.routeName);
+                      },
                       child: const Icon(
                         Icons.thumb_up_alt,
                         color: Colors.black,
@@ -131,7 +135,7 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                               topRight: Radius.circular(30.0),
                             ),
                           ),
-                          height: size.height * 0.15,
+                          height: size.height * 0.25,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,11 +150,21 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                               Expanded(
                                 child: ListView.builder(
                                   padding:
-                                      EdgeInsets.only(left: size.width * 0.15),
-                                  scrollDirection: Axis.vertical,
+                                      EdgeInsets.only(left: size.width * 0.105),
                                   itemCount: dB.orderValueSummary.length,
-                                  itemBuilder: (context, index) =>
-                                      dB.orderValueSummary[index],
+                                  itemBuilder: (context, index) => ListTile(
+                                    minVerticalPadding: size.height * 0.01,
+                                    leading:
+                                        Image.asset(dB.orderImageUrls[index]),
+                                    title: dB.orderValueSummary[index],
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'Subtotal: R\$${dB.subTotal.toStringAsFixed(2).replaceFirst('.', ',')}',
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.black,
                                 ),
                               ),
                               ElevatedButton(
