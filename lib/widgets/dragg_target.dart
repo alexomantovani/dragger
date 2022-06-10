@@ -1,5 +1,4 @@
 //Import Material package.
-import 'package:dragger/data/db_wherehouse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //Import Provider package.
@@ -7,6 +6,8 @@ import 'package:provider/provider.dart';
 
 //Import GenericProduct class
 import '/ui/components/generic_product.dart';
+//Import DbWherehouse class
+import '/data/db_wherehouse.dart';
 
 //Criar um statefulWidget called DraggTarget.
 class DraggTarget extends StatefulWidget {
@@ -118,36 +119,57 @@ class _DraggTargetState extends State<DraggTarget> {
                               color: Colors.black,
                             ),
                           )
-                        : TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              dB.getOrderPartial(productData, qtd);
-                              dB.saveCartProducts(productData);
-                            },
-                            child: Text(
-                              '${selectedQuantity.value}',
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.black,
-                              ),
+                        : Text(
+                            '${selectedQuantity.value}',
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
                             ),
                           ),
                   ],
                 ),
               ),
               actions: [
-                CupertinoDialogAction(
-                  onPressed: () => setState(() => upDateSelectedQuantity('-')),
-                  child: const Icon(
-                    Icons.remove,
-                    color: Colors.black,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CupertinoDialogAction(
+                        onPressed: () =>
+                            setState(() => upDateSelectedQuantity('-')),
+                        child: const Icon(
+                          Icons.remove,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: CupertinoDialogAction(
+                        onPressed: () =>
+                            setState(() => upDateSelectedQuantity('+')),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 CupertinoDialogAction(
-                  onPressed: () => setState(() => upDateSelectedQuantity('+')),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.black,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    dB.getOrderPartial(productData, qtd);
+                    dB.saveCartProducts(productData);
+                    setState(() {
+                      selectedQuantity.value = 1;
+                      qtd = 1;
+                    });
+                  },
+                  child: const Text(
+                    'Adicionar',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
