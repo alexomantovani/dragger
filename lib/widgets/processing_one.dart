@@ -1,6 +1,11 @@
 //Import the Material package
 import 'package:flutter/material.dart';
 
+//Import the Provider package
+import 'package:provider/provider.dart';
+
+import '/data/db_wherehouse.dart';
+
 //create a StatelessWidget called ProcessingOne
 class ProcessingOne extends StatelessWidget {
   const ProcessingOne({Key? key}) : super(key: key);
@@ -15,6 +20,7 @@ class ProcessingOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final DbWherehouse dB = Provider.of<DbWherehouse>(context);
     return Column(
       children: [
         ListTile(
@@ -32,20 +38,13 @@ class ProcessingOne extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: dB.orderValueSummary.length,
             itemBuilder: (context, index) => ListTile(
               contentPadding: EdgeInsets.only(left: size.width * 0.08),
               minVerticalPadding: size.height * 0.01,
-              title: const Text(
-                'Monster Mango Loco 3x R\$29,70',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
-              ),
-              trailing: CircleAvatar(
-                radius: size.width * 0.2,
-                backgroundColor: Colors.lightBlue.shade100,
+              title: dB.orderValueSummary[index],
+              trailing: Image.asset(
+                dB.orderImageUrls[index],
               ),
             ),
           ),
