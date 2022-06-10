@@ -258,7 +258,13 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   0.0),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: TextButton(
                               onPressed: () {
@@ -277,7 +283,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                     .toUpperCase()
                                     .toString(),
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 18.0,
                                 ),
                                 textAlign: TextAlign.center,
@@ -293,14 +299,20 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   0.0),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: Text(
                               Category.carnes.name.characters
                                   .toUpperCase()
                                   .toString(),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
@@ -318,14 +330,23 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
+                            padding: const EdgeInsets.all(14.0),
                             child: Text(
                               Category.graosEmassas.name.characters
                                   .toUpperCase()
-                                  .toString(),
+                                  .toString()
+                                  .replaceFirst('E', ' & ')
+                                  .replaceFirst('A', 'Ã'),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
@@ -338,14 +359,20 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: Text(
                               Category.higiene.name.characters
                                   .toUpperCase()
                                   .toString(),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
@@ -363,15 +390,23 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
+                            padding: const EdgeInsets.all(1.0),
                             child: Text(
                               Category.hortifruti.name.characters
                                   .toUpperCase()
-                                  .toString(),
+                                  .toString()
+                                  .replaceFirst('UTI', 'UTÍ'),
                               style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
+                                color: Colors.black,
+                                fontSize: 17.0,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -383,14 +418,21 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: Text(
                               Category.laticinios.name.characters
                                   .toUpperCase()
-                                  .toString(),
+                                  .toString()
+                                  .replaceFirst('CI', 'CÍ'),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
@@ -408,14 +450,20 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: Text(
                               Category.limpeza.name.characters
                                   .toUpperCase()
                                   .toString(),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
@@ -428,14 +476,20 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   .roundToDouble()),
                             width: width * 0.25,
                             height: height * 0.12,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
                             alignment: Alignment.center,
                             child: Text(
                               Category.padaria.name.characters
                                   .toUpperCase()
                                   .toString(),
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
