@@ -4,6 +4,8 @@ import '/data/db_wherehouse.dart';
 import '/ui/screens/aisle_section_screen.dart';
 
 class DirectorySectionScreen extends StatefulWidget {
+  //Create static const routeName
+  static const routeName = '/DirectorySectionScreen';
   //Turn DirectorySectionScreen into a StatefulWidget
   const DirectorySectionScreen({Key? key}) : super(key: key);
 
