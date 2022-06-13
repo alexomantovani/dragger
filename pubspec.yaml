@@ -102,6 +102,11 @@ flutter:
     - lib/assets/images/products/supermarket_detergente.png
     - lib/assets/images/products/supermarket_escova.png
     - lib/assets/images/products/supermarket_vassoura.png
+    - lib/assets/images/products/supermarket_croissant.png
+    - lib/assets/images/products/supermarket_donut.png
+    - lib/assets/images/products/supermarket_pao_de_forma.png
+    - lib/assets/images/products/supermarket_pao_frances.png
+    - lib/assets/images/products/supermarket_pao_italiano.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
