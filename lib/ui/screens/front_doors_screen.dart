@@ -263,8 +263,9 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
             ),
             onPressed: () async {
               openTheDoors();
-              setState(() => isVisible = true);
               await Future.delayed(const Duration(milliseconds: 1300));
+              setState(() => isVisible = true);
+              await Future.delayed(const Duration(milliseconds: 150));
               navigateTo();
             },
             child: const Text(
