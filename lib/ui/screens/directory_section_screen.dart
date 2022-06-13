@@ -163,6 +163,18 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
     super.didChangeDependencies();
   }
 
+  //Create a method to be reused for navigation purposes
+  void navigateToAisle(Category category) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const AisleSectionScreen(),
+        settings: RouteSettings(
+          arguments: category,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     //All Animation<double> and AnimationController will be of type late and will be initialized in the initState() method.
@@ -264,8 +276,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   (width * sideAnimationOne.value)
                                       .roundToDouble(),
                                   0.0),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -276,15 +288,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             alignment: Alignment.center,
                             child: TextButton(
                               onPressed: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const AisleSectionScreen(),
-                                    settings: const RouteSettings(
-                                      arguments: Category.bebidas,
-                                    ),
-                                  ),
-                                );
+                                navigateToAisle(Category.bebidas);
                               },
                               child: Text(
                                 Category.bebidas.name.characters
@@ -305,8 +309,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                                   (-width * sideAnimationOne.value)
                                       .roundToDouble(),
                                   0.0),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -315,15 +319,18 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.carnes.name.characters
-                                  .toUpperCase()
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            child: TextButton(
+                              onPressed: () => navigateToAisle(Category.carnes),
+                              child: Text(
+                                Category.carnes.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -336,8 +343,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate((width * sideAnimationTwo.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -346,18 +353,22 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(size.width * 0.02),
-                            child: Text(
-                              Category.graosEmassas.name.characters
-                                  .toUpperCase()
-                                  .toString()
-                                  .replaceFirst('E', ' & ')
-                                  .replaceFirst('A', 'Ã'),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            padding: EdgeInsets.all(size.width * 0.01),
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.graosEmassas),
+                              child: Text(
+                                Category.graosEmassas.name.characters
+                                    .toUpperCase()
+                                    .toString()
+                                    .replaceFirst('E', ' & ')
+                                    .replaceFirst('A', 'Ã'),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                           Container(
@@ -365,8 +376,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate(-(width * sideAnimationTwo.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -375,15 +386,19 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.higiene.name.characters
-                                  .toUpperCase()
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.higiene),
+                              child: Text(
+                                Category.higiene.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -396,8 +411,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate((width * sideAnimationThree.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -406,16 +421,24 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.hortifruti.name.characters
-                                  .toUpperCase()
-                                  .toString()
-                                  .replaceFirst('UTI', 'UTÍ'),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 17.0,
+                            margin: const EdgeInsets.symmetric(horizontal: 0.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 0.0),
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.hortifruti),
+                              child: Text(
+                                Category.hortifruti.name.characters
+                                    .toUpperCase()
+                                    .toString()
+                                    .replaceFirst('UT', 'ÚT'),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                  letterSpacing: -2.5,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                           Container(
@@ -423,8 +446,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate(-(width * sideAnimationThree.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -433,16 +456,21 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.laticinios.name.characters
-                                  .toUpperCase()
-                                  .toString()
-                                  .replaceFirst('CI', 'CÍ'),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.laticinios),
+                              child: Text(
+                                Category.laticinios.name.characters
+                                    .toUpperCase()
+                                    .toString()
+                                    .replaceFirst('CI', 'CÍ'),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                  letterSpacing: -1.5,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -455,8 +483,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate((width * sideAnimationFour.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -465,15 +493,19 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.limpeza.name.characters
-                                  .toUpperCase()
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.limpeza),
+                              child: Text(
+                                Category.limpeza.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                           Container(
@@ -481,8 +513,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                             transform: Matrix4.identity()
                               ..translate(-(width * sideAnimationFour.value)
                                   .roundToDouble()),
-                            width: width * 0.25,
-                            height: height * 0.12,
+                            width: width * 0.28,
+                            height: height * 0.13,
                             decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
                               border: Border.all(
@@ -491,15 +523,19 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              Category.padaria.name.characters
-                                  .toUpperCase()
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                            child: TextButton(
+                              onPressed: () =>
+                                  navigateToAisle(Category.padaria),
+                              child: Text(
+                                Category.padaria.name.characters
+                                    .toUpperCase()
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
