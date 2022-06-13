@@ -60,11 +60,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # Scene image files
     - lib/assets/images/scene/supermarket_cart.png
     - lib/assets/images/scene/supermarket_corridor.jpg
     - lib/assets/images/scene/supermarket_address_map.png
     - lib/assets/images/scene/supermarket_visa_icon.png
     - lib/assets/images/scene/supermarket_delivery.png
+    # Products image files
     - lib/assets/images/products/supermarket_agua_mineral.png
     - lib/assets/images/products/supermarket_cocacola.png
     - lib/assets/images/products/supermarket_longneck.png
@@ -85,6 +87,11 @@ flutter:
     - lib/assets/images/products/supermarket_escova_de_dentes.png
     - lib/assets/images/products/supermarket_creme_dental.png
     - lib/assets/images/products/supermarket_papel_higienico.png
+    - lib/assets/images/products/supermarket_abobora.png
+    - lib/assets/images/products/supermarket_cebola.png
+    - lib/assets/images/products/supermarket_laranja.png
+    - lib/assets/images/products/supermarket_ovos.png
+    - lib/assets/images/products/supermarket_tomate.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
