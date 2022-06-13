@@ -75,7 +75,11 @@ flutter:
     - lib/assets/images/products/supermarket_peito_de_frango.png
     - lib/assets/images/products/supermarket_picanha_bovina.png
     - lib/assets/images/products/supermarket_picanha_suina.png
-
+    - lib/assets/images/products/supermarket_arroz_tipo1.png
+    - lib/assets/images/products/supermarket_arroz_integral.png
+    - lib/assets/images/products/supermarket_macarrao_espaguete.png
+    - lib/assets/images/products/supermarket_macarrao_talharim.png
+    - lib/assets/images/products/supermarket_macarrao_instantaneo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
