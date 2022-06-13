@@ -62,14 +62,19 @@ flutter:
   assets:
     - lib/assets/images/scene/supermarket_cart.png
     - lib/assets/images/scene/supermarket_corridor.jpg
+    - lib/assets/images/scene/supermarket_address_map.png
+    - lib/assets/images/scene/supermarket_visa_icon.png
+    - lib/assets/images/scene/supermarket_delivery.png
     - lib/assets/images/products/supermarket_agua_mineral.png
     - lib/assets/images/products/supermarket_cocacola.png
     - lib/assets/images/products/supermarket_longneck.png
     - lib/assets/images/products/supermarket_monster.png
     - lib/assets/images/products/supermarket_12_pack.png
-    - lib/assets/images/scene/supermarket_address_map.png
-    - lib/assets/images/scene/supermarket_visa_icon.png
-    - lib/assets/images/scene/supermarket_delivery.png
+    - lib/assets/images/products/supermarket_contra_file.png
+    - lib/assets/images/products/supermarket_frango.png
+    - lib/assets/images/products/supermarket_peito_de_frango.png
+    - lib/assets/images/products/supermarket_picanha_bovina.png
+    - lib/assets/images/products/supermarket_picanha_suina.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
