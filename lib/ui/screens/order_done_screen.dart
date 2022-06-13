@@ -43,6 +43,7 @@ class _OrderDoneScreenState extends State<OrderDoneScreen> {
             color: Colors.black,
           ),
         ),
+        centerTitle: true,
         actions: [
           TextButton(
             style: ButtonStyle(

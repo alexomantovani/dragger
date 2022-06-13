@@ -77,10 +77,10 @@ class ProcessingOne extends StatelessWidget {
                 title: dB.orderValueSummary[index],
                 trailing: SizedBox(
                   height: size.height * 0.08,
-                  width: size.width * 0.12,
+                  width: size.width * 0.15,
                   child: Image.asset(
                     dB.orderImageUrls[index],
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                     alignment: Alignment.center,
                   ),
                 ),
