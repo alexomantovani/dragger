@@ -109,15 +109,20 @@ class DbWherehouse extends ChangeNotifier {
       ],
     },
     Category.higiene: {
-      'lib/assets/images/products/supermarket_desodorante.png': [
-        'Desodorante Spray 150ml',
-        17.90,
-        10,
+      'lib/assets/images/products/supermarket_papel_higienico.png': [
+        'Papel Higiênico 30m',
+        32.90,
+        40,
       ],
       'lib/assets/images/products/supermarket_shampoo.png': [
         'Shampoo 200ml',
         19.48,
         18,
+      ],
+      'lib/assets/images/products/supermarket_desodorante.png': [
+        'Desodorante Spray 200ml',
+        17.90,
+        10,
       ],
       'lib/assets/images/products/supermarket_escova_de_dentes.png': [
         'Escova de dentes 3un',
@@ -128,11 +133,6 @@ class DbWherehouse extends ChangeNotifier {
         'Creme Dental 90g',
         3.98,
         26,
-      ],
-      'lib/assets/images/products/supermarket_papel_higienico.png': [
-        'Papel Higiênico 30m',
-        32.90,
-        40,
       ],
     },
     Category.hortifruti: {
@@ -210,7 +210,7 @@ class DbWherehouse extends ChangeNotifier {
         16.98,
         8,
       ],
-      'lib/assets/images/products/supermarket_desinfetante.png': [
+      'lib/assets/images/products/supermarket_desinfectante.png': [
         'Desinfetante 500ml',
         11.90,
         16,
