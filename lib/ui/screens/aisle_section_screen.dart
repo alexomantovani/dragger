@@ -174,12 +174,12 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                                           top: size.height * 0.01),
                                       minVerticalPadding: size.height * 0.01,
                                       leading: SizedBox(
-                                        width: size.width * 0.12,
+                                        width: size.width * 0.15,
                                         height: size.height * 0.08,
                                         child: Image.asset(
                                           dB.orderImageUrls[index],
                                           alignment: Alignment.center,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fitWidth,
                                         ),
                                       ),
                                       title: dB.orderValueSummary[index],
@@ -323,41 +323,80 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                   children: [
                     Expanded(
                       child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.only(left: size.width * 0.13),
+                        itemExtent: 330.0,
                         itemCount: 5,
                         itemBuilder: (context, index) {
                           dB.getProducts(arguments, index);
                           List<Widget> draggables = List<Widget>.generate(
                             5,
-                            (index) => Expanded(
-                              child: SizedBox(
-                                width: 75.0,
-                                height: 75.0,
-                                child: DraggableProduct(
-                                  genericProduct: dB.genericProduct,
-                                  feedback: SizedBox(
-                                      width: 150.0,
-                                      height: 200.0,
-                                      child: dB.genericProduct.productWidget),
-                                  childWhenDragging: ShaderMask(
-                                    child: dB.genericProduct.productWidget,
-                                    shaderCallback: (Rect bounds) {
-                                      return LinearGradient(
-                                        colors: [
-                                          Colors.grey.shade900,
-                                          Colors.black,
-                                        ],
-                                      ).createShader(bounds);
-                                    },
-                                  ),
-                                  child: dB.genericProduct.productWidget,
+                            (index) => Card(
+                              surfaceTintColor: Colors.black,
+                              color: Colors.lightBlue.shade50,
+                              elevation: size.width * 0.02,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  20.0,
                                 ),
+                              ),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.08,
+                                  vertical: size.height * 0.12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    child: DraggableProduct(
+                                      genericProduct: dB.genericProduct,
+                                      feedback: SizedBox(
+                                          width: 150.0,
+                                          height: 200.0,
+                                          child:
+                                              dB.genericProduct.productWidget),
+                                      childWhenDragging: ShaderMask(
+                                        child: dB.genericProduct.productWidget,
+                                        shaderCallback: (Rect bounds) {
+                                          return LinearGradient(
+                                            colors: [
+                                              Colors.grey.shade900,
+                                              Colors.black,
+                                            ],
+                                          ).createShader(bounds);
+                                        },
+                                      ),
+                                      child: dB.genericProduct.productWidget,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.04),
+                                    child: Text(
+                                      'R\$${dB.genericProduct.productPrice.toStringAsFixed(2).replaceFirst('.', ',')}',
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.04),
+                                    child: Text(
+                                      dB.genericProduct.productId,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           );
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: draggables,
-                          );
+                          return draggables[index];
                         },
                       ),
                     ),
