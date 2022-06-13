@@ -39,6 +39,8 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
   late Animation<double> expansionAnimation;
   late AnimationController expansionAnimationController;
 
+  late Size size;
+
   @override
   void initState() {
     dropAnimationController = AnimationController(
@@ -153,6 +155,12 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
         }
       });
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
+    super.didChangeDependencies();
   }
 
   @override
@@ -338,7 +346,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.all(14.0),
+                            padding: EdgeInsets.all(size.width * 0.02),
                             child: Text(
                               Category.graosEmassas.name.characters
                                   .toUpperCase()
@@ -398,7 +406,6 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
                               ),
                             ),
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.all(1.0),
                             child: Text(
                               Category.hortifruti.name.characters
                                   .toUpperCase()
