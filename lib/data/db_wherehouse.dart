@@ -137,7 +137,7 @@ class DbWherehouse extends ChangeNotifier {
     },
     Category.hortifruti: {
       'lib/assets/images/products/supermarket_ovos.png': [
-        'Ovos Braco Extra 10un',
+        'Ovo Branco Extra 10un',
         9.80,
         20,
       ],
@@ -289,7 +289,6 @@ class DbWherehouse extends ChangeNotifier {
   //this function will be called saveCartProducts(GenericProduct genericProduct).
   void saveCartProducts(GenericProduct genericProduct) {
     _cartProducts.add(SizedBox(
-      key: GlobalKey(debugLabel: genericProduct.productId),
       child: genericProduct.productWidget,
     ));
     notifyListeners();
