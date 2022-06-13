@@ -80,6 +80,11 @@ flutter:
     - lib/assets/images/products/supermarket_macarrao_espaguete.png
     - lib/assets/images/products/supermarket_macarrao_talharim.png
     - lib/assets/images/products/supermarket_macarrao_instantaneo.png
+    - lib/assets/images/products/supermarket_desodorante.png
+    - lib/assets/images/products/supermarket_shampoo.png
+    - lib/assets/images/products/supermarket_escova_de_dentes.png
+    - lib/assets/images/products/supermarket_creme_dental.png
+    - lib/assets/images/products/supermarket_papel_higienico.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
