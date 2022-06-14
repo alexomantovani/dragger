@@ -163,6 +163,17 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
     super.didChangeDependencies();
   }
 
+  @override
+  void dispose() {
+    sideAnimationOneController.dispose();
+    sideAnimationTwoController.dispose();
+    sideAnimationThreeController.dispose();
+    sideAnimationFourController.dispose();
+    dropAnimationController.dispose();
+    expansionAnimationController.dispose();
+    super.dispose();
+  }
+
   //Create a method to be reused for navigation purposes
   void navigateToAisle(Category category) {
     Navigator.of(context).push(
