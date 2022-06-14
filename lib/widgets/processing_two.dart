@@ -2,21 +2,35 @@
 import 'package:flutter/material.dart';
 
 //Create a StatelessWidget called ProcessingTwo
-class ProcessingTwo extends StatelessWidget {
+class ProcessingTwo extends StatefulWidget {
   const ProcessingTwo({Key? key}) : super(key: key);
+
+  @override
+  State<ProcessingTwo> createState() => _ProcessingTwoState();
+}
+
+class _ProcessingTwoState extends State<ProcessingTwo> {
+  bool isPressedOne = false;
+  bool isPressedTwo = false;
+  bool isPressedThree = true;
+  bool isPressedFour = false;
+  bool isPressedFive = false;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(
-        left: size.width * 0.03,
+        left: size.width * 0.02,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
+              SizedBox(
+                width: size.width * 0.02,
+              ),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.lightBlue.shade100,
@@ -48,84 +62,207 @@ class ProcessingTwo extends StatelessWidget {
           ),
           Row(
             children: [
-              const Text(
-                'Entrega',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
+              Column(
+                children: [
+                  TextButton(
+                    onPressed: () =>
+                        setState(() => isPressedOne = !isPressedOne),
+                    child: Text(
+                      'Entrega',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isPressedOne == false
+                            ? Colors.lightBlue
+                            : Colors.black,
+                        fontWeight: isPressedOne == false
+                            ? FontWeight.w600
+                            : FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: isPressedOne == false ? true : false,
+                    child: Container(
+                      color: Colors.lightBlue,
+                      width: size.width * 0.16,
+                      height: size.height * 0.002,
+                    ),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return Container(
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF757575),
-                          ),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(65.0),
-                                topRight: Radius.circular(65.0),
+              Column(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() => isPressedOne = !isPressedOne);
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF757575),
                               ),
-                            ),
-                            height: size.height * 0.15,
-                            child: Column(
-                              children: const [
-                                Text(
-                                  'Endereço',
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.black,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(65.0),
+                                    topRight: Radius.circular(65.0),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                },
-                child: const Text(
-                  'Retirada',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
+                                height: size.height * 0.15,
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Endereço',
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    },
+                    child: Text(
+                      'Retirada',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isPressedOne == false
+                            ? Colors.black
+                            : Colors.lightBlue,
+                        fontWeight: isPressedOne == false
+                            ? FontWeight.normal
+                            : FontWeight.w600,
+                      ),
+                    ),
                   ),
-                ),
+                  Visibility(
+                    visible: isPressedOne == false ? false : true,
+                    child: Container(
+                      color: Colors.lightBlue,
+                      width: size.width * 0.16,
+                      height: size.height * 0.002,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          const Text(
-            'Onde deixar?',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black,
+          SizedBox(
+            height: size.height * 0.008,
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.02,
+            ),
+            child: const Text(
+              'Onde deixar?',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
             height: size.height * 0.06,
-            child: ListView.builder(
+            child: ListView(
+              itemExtent: size.width * 0.6,
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (context, index) => const Chip(
-                label: Text(
-                  'Portaria do Condomínio',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
+              children: [
+                GestureDetector(
+                  onTap: () => setState(() {
+                    isPressedTwo = !isPressedTwo;
+                    isPressedThree = false;
+                    isPressedFour = false;
+                  }),
+                  child: Chip(
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(
+                      side: isPressedTwo == false
+                          ? BorderSide(
+                              color: Colors.grey.shade200,
+                            )
+                          : const BorderSide(
+                              color: Colors.lightBlue,
+                            ),
+                    ),
+                    label: const Text(
+                      'Portaria da casa/prédio',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    isPressedThree = !isPressedThree;
+                    isPressedTwo = false;
+                    isPressedFour = false;
+                  }),
+                  child: Chip(
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(
+                        side: isPressedThree == true
+                            ? const BorderSide(
+                                color: Colors.lightBlue,
+                              )
+                            : BorderSide(
+                                color: Colors.grey.shade200,
+                              )),
+                    label: const Text(
+                      'Portaria do prédio/condomínio',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    isPressedFour = !isPressedFour;
+                    isPressedThree = false;
+                    isPressedTwo = false;
+                  }),
+                  child: Chip(
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(
+                      side: isPressedFour == false
+                          ? BorderSide(
+                              color: Colors.grey.shade200,
+                            )
+                          : const BorderSide(
+                              color: Colors.lightBlue,
+                            ),
+                    ),
+                    label: const Text(
+                      'Encontrar com o entregador',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const Text(
-            'Hoje, 25 - 30min',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.02,
+            ),
+            child: const Text(
+              'Hoje, 25 - 30min',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(
@@ -133,65 +270,137 @@ class ProcessingTwo extends StatelessWidget {
           ),
           SizedBox(
             height: size.height * 0.08,
-            child: ListView.builder(
+            child: ListView(
               scrollDirection: Axis.horizontal,
               itemExtent: size.width * 0.4,
-              itemCount: 7,
-              itemBuilder: (context, index) => Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  side: BorderSide(
-                    color: Colors.blueGrey.shade200,
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    side: BorderSide(
+                      color: isPressedFive == false
+                          ? Colors.lightBlue
+                          : Colors.blueGrey.shade100,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Expanded(
-                            child: Text(
-                              'Padrão',
-                              style: TextStyle(color: Colors.blueGrey),
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Hoje, 25 - 30min',
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              'R\$6,99',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Padrão',
+                                style: TextStyle(
+                                  color: isPressedFive == false
+                                      ? Colors.lightBlue
+                                      : Colors.black,
+                                  fontWeight: isPressedFive == false
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.blueGrey.shade200,
-                              width: 1.0,
-                            )),
-                        child: Icon(
-                          Icons.question_mark_rounded,
-                          color: Colors.blueGrey.shade200,
-                          size: 15.0,
+                            const Expanded(
+                              child: Text(
+                                'Hoje, 25 - 30min',
+                              ),
+                            ),
+                            const Expanded(
+                              child: Text(
+                                'R\$6,99',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                    ],
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.blueGrey.shade100,
+                                width: 1.0,
+                              )),
+                          child: Icon(
+                            Icons.question_mark_rounded,
+                            color: Colors.blueGrey.shade100,
+                            size: 15.0,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    side: BorderSide(
+                      color: Colors.blueGrey.shade200,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Entrega agendada',
+                                style: TextStyle(
+                                  color: isPressedFive == true
+                                      ? Colors.lightBlue
+                                      : Colors.black,
+                                  fontWeight: isPressedFive == true
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                ),
+                              ),
+                            ),
+                            const Expanded(
+                              child: Text(
+                                'Hoje, 25 - 30min',
+                              ),
+                            ),
+                            const Expanded(
+                              child: Text(
+                                'R\$6,99',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.blueGrey.shade100,
+                                width: 1.0,
+                              )),
+                          child: Icon(
+                            Icons.question_mark_rounded,
+                            color: Colors.blueGrey.shade100,
+                            size: 15.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
