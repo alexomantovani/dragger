@@ -80,7 +80,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
       duration: const Duration(milliseconds: 1200),
     );
 
-    sideAnimationOne = Tween<double>(begin: -0.41, end: 0.0).animate(
+    sideAnimationOne = Tween<double>(begin: -0.45, end: 0.0).animate(
       CurvedAnimation(
         parent: sideAnimationOneController,
         curve: Curves.fastOutSlowIn,
@@ -101,7 +101,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
       vsync: this,
       duration: const Duration(milliseconds: 600),
     );
-    sideAnimationTwo = Tween<double>(begin: -0.41, end: 0.0).animate(
+    sideAnimationTwo = Tween<double>(begin: -0.45, end: 0.0).animate(
       CurvedAnimation(
         parent: sideAnimationTwoController,
         curve: Curves.fastOutSlowIn,
@@ -120,7 +120,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
-    sideAnimationThree = Tween<double>(begin: -0.41, end: 0.0).animate(
+    sideAnimationThree = Tween<double>(begin: -0.45, end: 0.0).animate(
       CurvedAnimation(
         parent: sideAnimationThreeController,
         curve: Curves.fastOutSlowIn,
@@ -140,7 +140,7 @@ class _DirectorySectionScreenState extends State<DirectorySectionScreen>
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    sideAnimationFour = Tween<double>(begin: -0.41, end: 0.0).animate(
+    sideAnimationFour = Tween<double>(begin: -0.45, end: 0.0).animate(
       CurvedAnimation(
         parent: sideAnimationFourController,
         curve: Curves.fastOutSlowIn,

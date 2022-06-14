@@ -274,129 +274,137 @@ class _ProcessingTwoState extends State<ProcessingTwo> {
               scrollDirection: Axis.horizontal,
               itemExtent: size.width * 0.4,
               children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                    side: BorderSide(
-                      color: isPressedFive == false
-                          ? Colors.lightBlue
-                          : Colors.blueGrey.shade100,
+                GestureDetector(
+                  onTap: () => setState(() => isPressedFive = false),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(
+                        color: isPressedFive == false
+                            ? Colors.lightBlue
+                            : Colors.blueGrey.shade100,
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Padrão',
-                                style: TextStyle(
-                                  color: isPressedFive == false
-                                      ? Colors.lightBlue
-                                      : Colors.black,
-                                  fontWeight: isPressedFive == false
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Padrão',
+                                  style: TextStyle(
+                                    color: isPressedFive == false
+                                        ? Colors.lightBlue
+                                        : Colors.black,
+                                    fontWeight: isPressedFive == false
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Expanded(
-                              child: Text(
-                                'Hoje, 25 - 30min',
-                              ),
-                            ),
-                            const Expanded(
-                              child: Text(
-                                'R\$6,99',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                              const Expanded(
+                                child: Text(
+                                  'Hoje, 25 - 30min',
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.blueGrey.shade100,
-                                width: 1.0,
-                              )),
-                          child: Icon(
-                            Icons.question_mark_rounded,
-                            color: Colors.blueGrey.shade100,
-                            size: 15.0,
+                              const Expanded(
+                                child: Text(
+                                  'R\$6,99',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                      ],
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.blueGrey.shade100,
+                                  width: 1.0,
+                                )),
+                            child: Icon(
+                              Icons.question_mark_rounded,
+                              color: Colors.blueGrey.shade100,
+                              size: 15.0,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                    side: BorderSide(
-                      color: Colors.blueGrey.shade200,
+                GestureDetector(
+                  onTap: () => setState(() => isPressedFive = true),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(
+                        color: isPressedFive == true
+                            ? Colors.lightBlue
+                            : Colors.blueGrey.shade100,
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Entrega agendada',
-                                style: TextStyle(
-                                  color: isPressedFive == true
-                                      ? Colors.lightBlue
-                                      : Colors.black,
-                                  fontWeight: isPressedFive == true
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Entrega agendada',
+                                  style: TextStyle(
+                                    color: isPressedFive == true
+                                        ? Colors.lightBlue
+                                        : Colors.black,
+                                    fontWeight: isPressedFive == true
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Expanded(
-                              child: Text(
-                                'Hoje, 25 - 30min',
-                              ),
-                            ),
-                            const Expanded(
-                              child: Text(
-                                'R\$6,99',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                              const Expanded(
+                                child: Text(
+                                  'Hoje, 25 - 30min',
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.blueGrey.shade100,
-                                width: 1.0,
-                              )),
-                          child: Icon(
-                            Icons.question_mark_rounded,
-                            color: Colors.blueGrey.shade100,
-                            size: 15.0,
+                              const Expanded(
+                                child: Text(
+                                  'R\$6,99',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                      ],
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.blueGrey.shade100,
+                                  width: 1.0,
+                                )),
+                            child: Icon(
+                              Icons.question_mark_rounded,
+                              color: Colors.blueGrey.shade100,
+                              size: 15.0,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

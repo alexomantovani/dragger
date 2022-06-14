@@ -162,14 +162,19 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
                   ),
                   Visibility(
                     visible: isVisible,
-                    child: SizedBox(
-                      width: size.width * 0.01,
-                      height: size.height * 0.01,
-                      child: Hero(
-                        tag: 'Corridor',
-                        child: Image.asset(
-                          'lib/assets/images/scene/supermarket_corridor.jpg',
+                    child: Hero(
+                      tag: 'Corridor',
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'lib/assets/images/scene/supermarket_corridor.jpg',
+                            ),
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                        width: size.width * 0.01,
+                        height: size.height * 0.01,
                       ),
                     ),
                   ),
@@ -265,7 +270,7 @@ class _FrontDoorsScreenState extends State<FrontDoorsScreen>
               openTheDoors();
               await Future.delayed(const Duration(milliseconds: 1300));
               setState(() => isVisible = true);
-              await Future.delayed(const Duration(milliseconds: 150));
+              await Future.delayed(const Duration(milliseconds: 500));
               navigateTo();
             },
             child: const Text(

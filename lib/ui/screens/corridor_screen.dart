@@ -10,9 +10,9 @@ class CorridorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Hero(
-        tag: 'Corridor',
-        child: Center(
+      body: Center(
+        child: Hero(
+          tag: 'Corridor',
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(

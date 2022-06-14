@@ -233,7 +233,7 @@ class DbWherehouse extends ChangeNotifier {
         7,
       ],
       'lib/assets/images/products/supermarket_donut.png': [
-        'Donut Chocolate 250g',
+        'S\'mores Dream Donut 250g',
         4.98,
         30,
       ],
