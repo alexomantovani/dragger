@@ -85,7 +85,7 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                     CupertinoDialogAction(
                       onPressed: () {
                         setState(() => dB.getInitialState());
-                        Navigator.popAndPushNamed(
+                        Navigator.restorablePopAndPushNamed(
                             context, DirectorySectionScreen.routeName);
                       },
                       child: const Icon(
@@ -331,20 +331,33 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                           dB.getProducts(arguments, index);
                           List<Widget> draggables = List<Widget>.generate(
                             5,
-                            (index) => Card(
-                              surfaceTintColor: Colors.black,
-                              color: Colors.lightBlue.shade50,
-                              elevation: size.width * 0.02,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  20.0,
+                            (index) => Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black.withOpacity(0.5),
+                                  width: 1.5,
                                 ),
+                                color: Colors.lightBlue.shade50,
+                                borderRadius: BorderRadius.circular(20.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 5.0,
+                                    spreadRadius: 5.0,
+                                    offset: const Offset(2.0, 2.0),
+                                  ),
+                                ],
                               ),
+                              padding: const EdgeInsets.all(0.0),
                               margin: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.08,
                                   vertical: size.height * 0.12),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment:
+                                    dB.genericProduct.productId ==
+                                            'Desinfectante 500ml'
+                                        ? CrossAxisAlignment.center
+                                        : CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
@@ -372,7 +385,12 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: size.width * 0.04),
+                                      left: size.width * 0.04,
+                                      right: dB.genericProduct.productId ==
+                                              'Desinfectante 500ml'
+                                          ? size.width * 0.39
+                                          : 0.0,
+                                    ),
                                     child: Text(
                                       'R\$${dB.genericProduct.productPrice.toStringAsFixed(2).replaceFirst('.', ',')}',
                                       style: const TextStyle(
@@ -384,7 +402,12 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: size.width * 0.04),
+                                      left: size.width * 0.04,
+                                      right: dB.genericProduct.productId ==
+                                              'Desinfectante 500ml'
+                                          ? size.width * 0.145
+                                          : 0.0,
+                                    ),
                                     child: Text(
                                       dB.genericProduct.productId,
                                       style: const TextStyle(
