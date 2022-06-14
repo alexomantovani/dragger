@@ -195,7 +195,7 @@ class DbWherehouse extends ChangeNotifier {
         2.70,
         40,
       ],
-      'lib/assets/images/products/supermarket_escova.png': [
+      'lib/assets/images/products/supermarket_escova_limpeza.png': [
         'Escova Limpeza',
         4.80,
         4,
@@ -211,7 +211,7 @@ class DbWherehouse extends ChangeNotifier {
         8,
       ],
       'lib/assets/images/products/supermarket_desinfectante.png': [
-        'Desinfetante 500ml',
+        'Desinfectante 500ml',
         11.90,
         16,
       ],
