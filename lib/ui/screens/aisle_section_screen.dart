@@ -331,27 +331,20 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                           dB.getProducts(arguments, index);
                           List<Widget> draggables = List<Widget>.generate(
                             5,
-                            (index) => Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
+                            (index) => Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                side: BorderSide(
                                   color: Colors.black.withOpacity(0.5),
                                   width: 1.5,
                                 ),
-                                color: Colors.lightBlue.shade50,
-                                borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 5.0,
-                                    spreadRadius: 5.0,
-                                    offset: const Offset(2.0, 2.0),
-                                  ),
-                                ],
                               ),
-                              padding: const EdgeInsets.all(0.0),
+                              color: Colors.lightBlue.shade100,
+                              elevation: size.width * 0.02,
                               margin: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.08,
-                                  vertical: size.height * 0.12),
+                                horizontal: size.width * 0.08,
+                                vertical: size.height * 0.12,
+                              ),
                               child: Column(
                                 crossAxisAlignment:
                                     dB.genericProduct.productId ==
