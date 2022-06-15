@@ -66,6 +66,7 @@ flutter:
     - lib/assets/images/scene/supermarket_address_map.png
     - lib/assets/images/scene/supermarket_visa_icon.png
     - lib/assets/images/scene/supermarket_delivery.png
+    - lib/assets/images/scene/supermarket_takeout_map.png
     # Products image files
     - lib/assets/images/products/supermarket_agua_mineral.png
     - lib/assets/images/products/supermarket_cocacola.png
