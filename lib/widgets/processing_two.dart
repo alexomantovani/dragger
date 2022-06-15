@@ -96,35 +96,259 @@ class _ProcessingTwoState extends State<ProcessingTwo> {
                     onPressed: () {
                       setState(() => isPressedOne = !isPressedOne);
                       showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
+                        context: context,
+                        builder: (context) {
+                          return StatefulBuilder(
+                            builder: (context, setState) => Container(
                               decoration: const BoxDecoration(
                                 color: Color(0xFF757575),
                               ),
                               child: Container(
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(65.0),
-                                    topRight: Radius.circular(65.0),
+                                    topLeft: Radius.circular(size.width * 0.05),
+                                    topRight:
+                                        Radius.circular(size.width * 0.05),
                                   ),
                                 ),
-                                height: size.height * 0.15,
+                                height: size.height * 0.4,
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Endereço',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.black,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: size.height * 0.03,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.03,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            image: const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/scene/supermarket_takeout_map.png'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          width: size.width * 0.2,
+                                          height: size.height * 0.1,
+                                          child: const Icon(
+                                            Icons.directions_walk_rounded,
+                                            color: Colors.red,
+                                            size: 40.0,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: size.width * 0.02,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Retirar em',
+                                              style: TextStyle(
+                                                color: Colors.grey.shade500,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.005,
+                                            ),
+                                            const Text(
+                                              '177 Bleecker St',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.005,
+                                            ),
+                                            Text(
+                                              'New York',
+                                              style: TextStyle(
+                                                color: Colors.grey.shade500,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.02,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: size.width * 0.03,
+                                      ),
+                                      child: const Text(
+                                        'Hoje, 25 - 30min',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.08,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        itemExtent: size.width * 0.42,
+                                        padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                        ),
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () => setState(
+                                                () => isPressedFive = false),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                                side: BorderSide(
+                                                  color: isPressedFive == false
+                                                      ? Colors.red
+                                                      : Colors
+                                                          .blueGrey.shade100,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Hoje, 25 - 30min',
+                                                        style: TextStyle(
+                                                          color: Colors
+                                                              .grey.shade500,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const Expanded(
+                                                      child: Text(
+                                                        'Grátis',
+                                                        style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () => setState(
+                                                () => isPressedFive = true),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                                side: BorderSide(
+                                                  color: isPressedFive == true
+                                                      ? Colors.red
+                                                      : Colors
+                                                          .blueGrey.shade100,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Hoje, 15:30 - 16:00',
+                                                        style: TextStyle(
+                                                          color: Colors
+                                                              .grey.shade500,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const Expanded(
+                                                      child: Text(
+                                                        'Grátis',
+                                                        style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Card(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                              side: BorderSide(
+                                                color: Colors.blueGrey.shade100,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      'Hoje, 16:30 - 17:00',
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey.shade500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const Expanded(
+                                                    child: Text(
+                                                      'Grátis',
+                                                      style: TextStyle(
+                                                        color: Colors.green,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                            );
-                          });
+                            ),
+                          );
+                        },
+                      );
                     },
                     child: Text(
                       'Retirada',
@@ -272,7 +496,7 @@ class _ProcessingTwoState extends State<ProcessingTwo> {
             height: size.height * 0.08,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              itemExtent: size.width * 0.4,
+              itemExtent: size.width * 0.42,
               children: [
                 GestureDetector(
                   onTap: () => setState(() => isPressedFive = false),
@@ -390,17 +614,19 @@ class _ProcessingTwoState extends State<ProcessingTwo> {
                               ),
                             ],
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.blueGrey.shade100,
-                                  width: 1.0,
-                                )),
-                            child: Icon(
-                              Icons.question_mark_rounded,
-                              color: Colors.blueGrey.shade100,
-                              size: 15.0,
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.blueGrey.shade100,
+                                    width: 1.0,
+                                  )),
+                              child: Icon(
+                                Icons.question_mark_rounded,
+                                color: Colors.blueGrey.shade100,
+                                size: 15.0,
+                              ),
                             ),
                           )
                         ],
