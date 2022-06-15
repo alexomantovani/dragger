@@ -37,12 +37,13 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
 
   //Create callback function to the SnackBar
   void showSnackBar() async {
+    await Future.delayed(const Duration(seconds: 1));
     snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
       dismissDirection: DismissDirection.up,
-      margin: const EdgeInsets.symmetric(
-        vertical: 352.0,
-        horizontal: 52.0,
+      margin: EdgeInsets.symmetric(
+        vertical: size.height * 0.4,
+        horizontal: size.width * 0.2,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       duration: const Duration(seconds: 3),
@@ -56,7 +57,6 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
         textAlign: TextAlign.center,
       ),
     );
-    await Future.delayed(const Duration(seconds: 1));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -325,7 +325,7 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.only(left: size.width * 0.13),
-                        itemExtent: 330.0,
+                        itemExtent: size.width * 0.78,
                         itemCount: 5,
                         itemBuilder: (context, index) {
                           dB.getProducts(arguments, index);
@@ -358,8 +358,8 @@ class _AisleSectionScreenState extends State<AisleSectionScreen> {
                                     child: DraggableProduct(
                                       genericProduct: dB.genericProduct,
                                       feedback: SizedBox(
-                                          width: 150.0,
-                                          height: 200.0,
+                                          width: size.height * 0.22,
+                                          height: size.width * 0.25,
                                           child:
                                               dB.genericProduct.productWidget),
                                       childWhenDragging: ShaderMask(
