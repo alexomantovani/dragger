@@ -5,6 +5,8 @@ This application is part of a portifolio development and study.
 The goal is to practice Dart, Flutter and creative design thinking while
 showing good practices of refactorying, organization and maintenance.
 
+![Alt Text] (https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/iPhone_Cortado_P1.gif)
+
 # Libraries and Tools
 - [x] Git
 - [x] Flutter
