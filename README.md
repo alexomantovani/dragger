@@ -5,9 +5,13 @@ This application is part of a portifolio development and study.
 The goal is to practice Dart, Flutter and creative design thinking while
 showing good practices of refactorying, organization and maintenance.
 
-<img src="https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/iPhone.gif" width="300" height="500" />
+<p float="left">
+  <img src="https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/iPhone.gif" width="300" height="500" />
+  <img src="https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/android.gif" width="300" height="500" />
+</p>
 
-<img src="https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/android.gif" width="300" height="500" />
+
+
 
 # Libraries and Tools
 - [x] Git
