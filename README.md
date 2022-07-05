@@ -10,9 +10,6 @@ showing good practices of refactorying, organization and maintenance.
   <img src="https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/android.gif" width="300" height="500" />
 </p>
 
-
-
-
 # Libraries and Tools
 - [x] Git
 - [x] Flutter
