@@ -6,8 +6,8 @@ The goal is to practice Dart, Flutter and creative design thinking while
 showing good practices of refactorying, organization and maintenance.
 
 <p float="left">
-  [![Android](https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/android.mp4)]
-  [![IPhone](https://github.com/alexomantovani/dragger/blob/main/lib/readme_assets/iPhone.mp4)]
+  https://user-images.githubusercontent.com/89102808/177853345-a7eaca15-072d-46ab-a7dd-8e49bf58cbf6.mp4
+  https://user-images.githubusercontent.com/89102808/177853510-26ab4386-737b-4541-9886-acbb083e078e.mp4
 </p>
 
 # Libraries and Tools
